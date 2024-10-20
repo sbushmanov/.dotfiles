@@ -1,0 +1,186 @@
+general.live_config_reload = true
+general.import = [
+  "/home/sergey/.asdf/installs/nodejs/20.16.0/lib/node_modules/alacritty-themes/themes/Tokyonight_Night.toml"
+]
+
+[[colors.indexed_colors]]
+color = "0xff9e64"
+index = 16
+
+[[colors.indexed_colors]]
+color = "0xdb4b4b"
+index = 17
+
+[colors.bright]
+black = "#000000"
+blue = "#8BE9FD"
+cyan = "#FF79C6"
+green = "#50FA7B"
+magenta = "#BD93F9"
+red = "#FF5555"
+white = "#FFFFFF"
+yellow = "#FFB86C"
+
+[colors.normal]
+black = "#44475A"
+blue = "#8BE9FD"
+cyan = "#FF79C6"
+green = "#50FA7B"
+magenta = "#BD93F9"
+red = "#FF5555"
+white = "#f8f8f2"
+yellow = "#FFB86C"
+
+[colors.primary]
+background = "#282A36"
+foreground = "#f8f8f2"
+
+[cursor.style]
+blinking = "On"
+shape = "Underline"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 12
+
+  [font.bold]
+  family = "JetBrainsMono Nerd Font"
+  style = "Bold"
+
+  [font.italic]
+  family = "JetBrainsMono Nerd Font"
+  style = "Italic"
+
+  [font.normal]
+  family = "JetBrainsMono Nerd Font"
+  style = "Regular"
+
+[[keyboard.bindings]]
+action = "Quit"
+key = "Q"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "PasteSelection"
+key = "Insert"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Key0"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Plus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "F11"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Paste"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "Copy"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "ClearLogNotice"
+key = "L"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\f"
+key = "L"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "PageUp"
+mode = "~Alt"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "PageDown"
+mode = "~Alt"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "End"
+mode = "~Alt"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollToTop"
+key = "Home"
+mode = "~Alt"
+mods = "Shift"
+
+[[mouse.bindings]]
+action = "Copy"
+mouse = "Left"
+
+[[mouse.bindings]]
+action = "Paste"
+mouse = "Right"
+
+[scrolling]
+history = 5_000
+
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[terminal.shell]
+# args = [ "new-session", "-A", "-D", "-s", "general" ]
+# program = "/home/sergey/.asdf/shims/tmux"
+program = "/usr/bin/fish"
+
+[window]
+decorations = "none"
+opacity = 0.8
+startup_mode = "Maximized"
+title = "Alacritty"
+
+  [window.class]
+  general = "Alacritty"
+  instance = "Alacritty"
+
+  [window.padding]
+  x = 6
+  y = 6

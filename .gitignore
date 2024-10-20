@@ -6,12 +6,18 @@
 
 !/atuin/
 !/atuin/**
-!alacritty
-!fish
-!nnn
-!nvim
-!tmux
-!wezterm
+!/alacritty/
+!/alacritty/**
+!/fish/
+!/fish/**
+!/nnn/
+!/nnn/**
+!/nvim/
+!/nvim/**
+!/tmux/
+!/tmux/**
+!/wezterm/
+!/wezterm/**
 
 
 # Bash stuff (profile just sources bashrc, since it's the only thing sourced
