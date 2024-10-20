@@ -1,0 +1,12 @@
+[theme]
+name = "tokyonight"
+parent = "marine"
+
+[colors]
+AlertError = 'yellogreen'
+AlertWarn  = '#c3e88d' # cyan
+AlertInfo  = '#4fd6be' # turquoise
+Annotation = '#7aa2f7' # steelblue
+Guidance   = '#9ece6a' # teal
+Important  = '#f7768e' # white
+Base       = 'lightsteelblue'
