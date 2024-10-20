@@ -176,3 +176,5 @@ etc/clusto*.conf
 # Lazygit
 !.config/lazygit/
 !.config/lazygit/config.yml
+
+*.luac
