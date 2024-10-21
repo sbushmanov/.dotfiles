@@ -14,7 +14,7 @@
 !/nnn/**
 !/nvim/
 !/nvim/**
-!/tmux/
+!/tmux/tmux.conf
 !/wezterm/
 !/wezterm/**
 
