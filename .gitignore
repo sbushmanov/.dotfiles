@@ -19,6 +19,7 @@
 !/wezterm/
 !/wezterm/**
 !.stowrc
+!starship.toml
 
 
 # Bash stuff (profile just sources bashrc, since it's the only thing sourced
