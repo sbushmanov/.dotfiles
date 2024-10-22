@@ -18,6 +18,7 @@
 !/tmux/tmux.conf
 !/wezterm/
 !/wezterm/**
+!.stowrc
 
 
 # Bash stuff (profile just sources bashrc, since it's the only thing sourced
