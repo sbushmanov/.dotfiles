@@ -10,10 +10,34 @@ return {
       extensions = { lazy_nvim = true },
       keymaps = {
         {
-          "<leader>zd",
-          "<cmd>Telescope zoxide list<CR>",
+          "<leader>fo",
+          ":lua require('ufo').setup({})<CR>",
           mode = { 'n' },
-          description = "Telescope zoxide",
+          description = "Enable ufo folding plugin",
+        },
+        {
+          "<C-s>",
+          "<cmd>Telescope current_buffer_fuzzy_find<CR>",
+          mode = { 'n' },
+          description = "Telescope current buffer search/find",
+        },
+        {
+          "<leader>jf",
+          "<cmd>lua require('telescope').extensions.jumper.jump_to_file()<CR>",
+          mode = { 'n' },
+          description = "Jumper to file",
+        },
+        {
+          "<leader>jd",
+          "<cmd>lua require('telescope').extensions.jumper.jump_to_directory()<CR>",
+          mode = { 'n' },
+          description = "Jumper to directory",
+        },
+        {
+          "<leader>jj",
+          "<cmd>lua require('telescope').extensions.jumper.find_in_files()<CR>",
+          mode = { 'n' },
+          description = "Jumper find in files",
         },
         {
           "<A-q>",
@@ -182,150 +206,141 @@ return {
         { "<leader>fb", ":FzfLua buffers<cr>",                    description = "Fzf buffer" },
         { "<leader>fg", ":FzfLua live_grep<cr>",                  description = "Fzf live grep" },
         { "<leader>fh", ":FzfLua oldfiles<cr>",                   description = "Fzf file history" },
+        { "<C-f>",      ":FzfLua oldfiles<cr>",                   description = "Fzf file history" },
         { "<leader>fv", ":FzfLua commands<cr>",                   description = "Fzf commands" },
         { "<leader>fc", ":FzfLua colorscheme<cr>",                description = "fzf colorscheme" },
-        { "<leader>gf", ":Lspsaga lsp_finder<CR>",                description = "Lspsaga finder" },
-        { "<leader>lf", ":Lspsaga lsp_finder<CR>",                description = "Lspsaga finder" },
         { "dr",         ":lua  require('dap').repl.toggle()<cr>", description = "DAP repl" },
         { "dc",         ":lua  require('dap').continue()<cr>",    description = "DAP continue" },
-        {
-          "<leader>ca",
-          ":Lspsaga code_action<CR>",
-          description = "Lspsaga code action"
-        },
+        { "<leader>gf", ":Lspsaga finder<CR>",                    description = "Lspsaga finder" },
+        { "<leader>lf", ":Lspsaga finder<CR>",                    description = "Lspsaga finder" },
+        { "<leader>ca", ":Lspsaga code_action<CR>",               description = "Lspsaga code action" },
         {
           "<leader>p",
           ":lua require('actions-preview').code_actions()<CR>",
-          description = "Preview code action"
+          description = "Preview code action",
         },
         {
           "<leader>rn",
           ":Lspsaga rename<CR>",
-          description = "Lspsaga rename"
+          description = "Lspsaga rename",
         },
         {
           "<leader>gd",
           ":Lspsaga peek_definition<CR>",
-          description = "Lspsaga peek definition"
+          description = "Lspsaga peek definition",
         },
         {
           "<leader>ld",
           ":Lspsaga peek_definition<CR>",
-          description = "Lspsaga peek definition"
+          description = "Lspsaga peek definition",
         },
         {
           "<leader>gD",
           "<cmd>Lspsaga goto_definition<CR>",
-          description = "Lspsaga go to definition"
+          description = "Lspsaga go to definition",
         },
         {
           "<leader>lD",
           "<cmd>Lspsaga goto_definition<CR>",
-          description = "Lspsaga go to definition"
+          description = "Lspsaga go to definition",
         },
         {
           "<leader>gt",
           ":Lspsaga peek_type_definition<CR>",
-          description = "Lspsaga peek type definition"
+          description = "Lspsaga peek type definition",
         },
         {
           "<leader>gT",
           ":Lspsaga goto_type_definition<CR>",
           description =
-          "Lspsaga go to type definition"
+          "Lspsaga go to type definition",
         },
         {
           "<leader>sc",
           "<cmd>Lspsaga show_cursor_diagnostics<CR>",
-          description = "Lspsaga cursor diagnostic"
+          description = "Lspsaga cursor diagnostic",
         },
         {
           "<leader>lc",
           "<cmd>Lspsaga show_cursor_diagnostics<CR>",
           description =
-          "Lspsaga cursor diagnostic"
+          "Lspsaga cursor diagnostic",
         },
         {
           "<leader>sl",
           "<cmd>Lspsaga show_line_diagnostics<CR>",
-          description = "Lspsaga line diagnostic"
+          description = "Lspsaga line diagnostic",
         },
         {
           "<leader>sb",
           "<cmd>Lspsaga show_buffer_diagnostics<CR>",
           description =
-          "Lspsaga buffer diagnostic"
+          "Lspsaga buffer diagnostic",
         },
         {
           "<leader>lb",
           "<cmd>Lspsaga show_buffer_diagnostics<CR>",
           description =
-          "Lspsaga buffer diagnostic"
+          "Lspsaga buffer diagnostic",
         },
         {
           "<leader>sw",
           "<cmd>Lspsaga show_workspace_diagnostics<CR>",
           description =
-          "Lspsaga workspace diagnostic"
+          "Lspsaga workspace diagnostic",
         },
         {
           "[e",
           "<cmd>Lspsaga diagnostic_jump_prev<CR>",
-          description = "Lspsaga previous diagnostic"
+          description = "Lspsaga previous diagnostic",
         },
         {
           "[d",
           "<cmd>:lua vim.diagnostic.goto_prev()<CR>",
-          description = "Vim previous diagnostic"
+          description = "Vim previous diagnostic",
         },
 
         {
           "]e",
           "<cmd>Lspsaga diagnostic_jump_next<CR>",
-          description = "Lspsaga next diagnostic"
+          description = "Lspsaga next diagnostic",
         },
         {
           "]d",
           "<cmd>:lua vim.diagnostic.goto_next()<CR>",
-          description = "Vim next diagnostic"
+          description = "Vim next diagnostic",
         },
 
         {
           "<A-o>",
           "<cmd>Lspsaga outline<CR>",
-          description = "Lspsaga project outline"
+          description = "Lspsaga project outline",
         },
         -- { "K", "<cmd>Lspsaga hover_doc<CR>", description = "Lspsaga hover doc" },
         {
           "?",
           "<cmd>Lspsaga hover_doc<CR>",
-          description = "Lspsaga hover doc"
+          description = "Lspsaga hover doc",
         },
         {
           "<leader>ci",
           "<cmd>Lspsaga incoming_calls<CR>",
-          description = "Lspsaga incoming calls"
+          description = "Lspsaga incoming calls",
         },
-        -- { "li", "<cmd>Lspsaga incoming_calls<CR>", description = "Lspsaga incoming calls" },
         {
           "<leader>li",
           "<cmd>Lspsaga incoming_calls<CR>",
-          description = "Lspsaga incoming calls"
-        },
-        {
-          "<leader>co",
-          "<cmd>Lspsaga outgoing_calls<CR>",
-          description = "Lspsaga outgoing calls"
+          description = "Lspsaga incoming calls",
         },
         {
           "<leader>lo",
           "<cmd>Lspsaga outgoing_calls<CR>",
-          description = "Lspsaga outgoing calls"
+          description = "Lspsaga outgoing calls",
         },
         {
           "<A-e>",
           "<cmd>Lspsaga term_toggle<CR>",
-          description = "Lspsaga toggle terminal"
+          description = "Lspsaga toggle terminal",
         },
         {
           "gr",

@@ -29,8 +29,7 @@ if type fzf >/dev/null 2>&1; then
     else
         [ -z "$cmd" ] && cmd="find . -type f 2>/dev/null"
     fi
-    entry="$(eval "$cmd" |  fd -H -tf --absolute-path | fzf -m --preview "bat --style=plain --color=always {}" --preview-window "up,60%,border-bottom,+{2}+3/3,~3" --tmux 90%)"
-    jumper update --type=files entry 
+    entry="$(eval "$cmd" | jumper find --type=files | fzf -m --preview "bat --style=plain --color=always {}" --preview-window "up,60%,border-bottom,+{2}+3/3,~3" --tmux 90%)"
     # To show only the file name
     # entry=$(find . -type f 2>/dev/null | fzf --delimiter / --with-nth=-1 --tiebreak=begin --info=hidden)
 elif type sk >/dev/null 2>&1; then

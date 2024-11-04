@@ -70,6 +70,18 @@ opt.wildignore:append "**/.git/*"
 --   set shortmess-=F
 -- ]]
 
+-- upadte jumper filename db
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPre" }, {
+    pattern = { "*" },
+    callback = function(ev)
+        local filename = vim.api.nvim_buf_get_name(ev.buf)
+        -- do not log .git files, and buffers opened by plugins (which often contain some ':')
+        if not (string.find(filename, "/.git") or string.find(filename, ":")) then
+            vim.fn.system({ "jumper", "update", "--type=files", filename })
+        end
+    end
+})
+
 vim.cmd [[
   augroup cdpwd
       autocmd!

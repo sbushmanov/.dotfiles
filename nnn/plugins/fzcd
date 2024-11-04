@@ -8,7 +8,7 @@
 . "$(dirname "$0")"/.nnn-plugin-helper
 
 if [ "$(cmd_exists fzf)" -eq "0" ]; then
-	sel=$(fzf  --tmux 80%)
+	sel=$(fd -H -td -tf --absolute-path | fzf  --preview "if test -d {};exa -la --header {};else if test -f {};bat --style=plain --color=always {};else; {};end;" --preview-window "up,60%,border-bottom,+{2}+3/3,~3" --tmux 90%)
 else
 	exit 1
 fi
@@ -18,6 +18,7 @@ if [ -n "$sel" ]; then
 		sel=$(dirname "$sel")
     elif [ "$sel" = "." ]; then
         exit 0
+    jumper update --type=directories $sel
 	fi
 
     # Check if selected path returned

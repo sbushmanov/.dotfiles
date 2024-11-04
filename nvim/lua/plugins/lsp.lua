@@ -1,5 +1,9 @@
 return {
-  { "folke/neodev.nvim", opts = {} },
+  {
+    "folke/lazydev.nvim",
+    ft = { 'lua' },
+    opts = {}
+  },
   {
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
@@ -10,21 +14,26 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    -- ft = { "sc", "scala", "lua", "go"},
+    event = { "CursorMoved", "BufNewFile" },
+    cmd = { "LspInfo", "LspInstall", "InsertEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       'nvimdev/lspsaga.nvim',
-      {
-        "SmiteshP/nvim-navbuddy",
-        event = "VeryLazy",
-        dependencies = {
-          "SmiteshP/nvim-navic",
-          "MunifTanjim/nui.nvim"
-        },
-        opts = { lsp = { auto_attach = true } }
-      }
+      -- {
+      --   "SmiteshP/nvim-navbuddy",
+      --   event = "VeryLazy",
+      --   dependencies = {
+      --     "SmiteshP/nvim-navic",
+      --     "MunifTanjim/nui.nvim"
+      --   },
+      --   opts = {
+      --     lsp = { auto_attach = true }
+      --   },
+      -- }
     },
     config = function()
-      require("neodev").setup({})
+      -- require("lazydev").setup({})
       local mason = require("mason")
       local mason_options = {
         ensure_installed = { "debugpy" }, -- not an option from mason.nvim
@@ -198,12 +207,12 @@ return {
       })
 
       -- breadcrumbs in lualine
-      local navic = require("nvim-navic")
-      local on_attach = function(client, bufnr)
-        if client.server_capabilities.documentSymbolProvider then
-          navic.attach(client, bufnr)
-        end
-      end
+      -- local navic = require("nvim-navic")
+      -- local on_attach = function(client, bufnr)
+      --   if client.server_capabilities.documentSymbolProvider then
+      --     navic.attach(client, bufnr)
+      --   end
+      -- end
 
       -- enable completion on all lsp instances
       local capabilities = vim.lsp.protocol.make_client_capabilities()

@@ -12,6 +12,44 @@ if status is-interactive
 
 
     #------------------------------------------------------------------------------#
+    #                                   fasd                                   #
+    #------------------------------------------------------------------------------#
+    # Load fasd
+    # if test -x /usr/bin/fasd
+    #     set -gx FASD_DATADIR ~/.local/share/fasd
+    #     set -gx FASD_TMUX 1
+    #
+    #     # Function to track files
+    #     function fasd_file
+    #         if test (count $argv) -eq 0
+    #             # If no arguments, just list files
+    #             fasd -f
+    #         else
+    #             # If arguments are given, track those files
+    #             fasd -f $argv
+    #         end
+    #     end
+    #
+    #     # Autocompletion for fasd
+    #     function __fish_fasd_complete
+    #         set -l cmd (commandline -cp)
+    #         if test (count $cmd) -eq 1
+    #             set -l file (fasd -f)
+    #             printf "%s\n" $file
+    #         end
+    #     end
+    #
+    #     # Bind the fasd function to `f` command
+    #     function f
+    #         fasd_file $argv
+    #     end
+    #
+    #     # Initialize fasd
+    #     eval (fasd --init fish)
+    # end
+
+
+    #------------------------------------------------------------------------------#
     #              Commands to run in interactive sessions can go here             #
     #------------------------------------------------------------------------------#
     # put prompt at the bottom
@@ -21,9 +59,11 @@ if status is-interactive
     #------------------------------------------------------------------------------#
     #                                  set alaises                                 #
     #------------------------------------------------------------------------------#
-    alias v 'nvim'
-    alias vf 'fzf --tmux 85% --preview "bat --color always {}"  --exit-0 | xargs -r nvim || true'
-    alias fn 'n (fzf --tmux 85% --walker="dir,hidden" --preview "exa -la {}"); printf "%.0s\n" (seq 1 100); commandline -f repaint'
+    alias v nvim
+    alias vh v_jumper_files_exact
+    alias vi v_jumper_files_abstract
+    # alias vf 'fzf --tmux 85% --preview "bat --color always {}"  --exit-0 | xargs -r nvim || true'
+    # alias fn 'n (fzf --tmux 85% --walker="dir,hidden" --preview "exa -la {}"); printf "%.0s\n" (seq 1 100); commandline -f repaint'
     alias ll 'eza -la --icons --git -a'
     alias lt 'eza --tree --level=2 --icons --git -a'
     alias ls lsd
@@ -32,27 +72,52 @@ if status is-interactive
     # set -gx TERMINAL alacritty
     # alias gogh 'bash -c "$(curl -sLo- https://git.io/vQgMr)"'
 
+
+    #------------------------------------------------------------------------------#
+    #                            abstract and update db                            #
+    #------------------------------------------------------------------------------#
+    bind \ce v_jumper_files_abstract
+    bind \cc 'cd_jumper_directories_abstract; printf "%.0s\n" (seq 1 100); commandline -f repaint'
+    bind \cn 'nnn_jumper_directories_abstract; printf "%.0s\n" (seq 1 100); commandline -f repaint'
+
+
+    #------------------------------------------------------------------------------#
+    #                            exact db                                          #
+    #------------------------------------------------------------------------------#
+    bind \ee v_jumper_files_exact
+    bind \ec cd_jumper_directories_exact
+    bind \en nnn_jumper_directories_exact
+    
+
+
+    #------------------------------------------------------------------------------#
+    #                            live grep and vim into res                        #
+    #------------------------------------------------------------------------------#
+    bind \cg fd_live_grep
+   
     
     #------------------------------------------------------------------------------#
     #                                terminal binds \c                               #
     #------------------------------------------------------------------------------#
     bind \c_ 'cd ~; commandline -f repaint' # good
     bind \cl 'printf "%.0s\n" (seq 1 100); commandline -f repaint' # good
-    bind \cc 'cd $(fd --hidden --type d . | fzf --tmux 85%  --preview "exa -la --header {}"); printf "%.0s\n" (seq 1 100); commandline -f repaint' # good
+    # bind \cc 'cd $(fd --hidden --type d . | fzf --tmux 85%  --preview "exa -la --header {}"); printf "%.0s\n" (seq 1 100); commandline -f repaint' # good
     bind \ch '_fzf_search_history; printf "%.0s\n" (seq 1 100); commandline -f repaint' # good
     bind \cp '_fzf_search_processes; printf "%.0s\n" (seq 1 100); commandline -f repaint' # good
     # bind \cf 'fd --hidden . | fzf --preview "if test -d {};exa -la --header {};else if test -f {};bat --style=plain --color=always {};else; {};end;" --bind "ctrl-o:execute(nvim {} &> /dev/tty)"'
-    bind \cf '_fzf_search_directory; printf "%.0s\n" (seq 1 100); commandline -f repaint'
+    # bind \cf '_fzf_search_directory; printf "%.0s\n" (seq 1 100); commandline -f repaint' # update for jumper
     fzf_configure_bindings --variables=\e\cv
 
-   
+
     #------------------------------------------------------------------------------#
     #                            external command binds \e                           #
     #------------------------------------------------------------------------------#
-    bind \en fn
+    # bind \en fn
     bind \ev 'v (fd --hidden . | fzf --tmux 85% --preview "if test -d {};exa -la --header {};else if test -f {};bat --style=plain --color=always {};else; {};end;")'
+    # bind \ee 'v (f -Rfl | fzf --tmux 80% --preview "bat --style=plain --color=always {}")'
+    # bind \ec 'cd $(f -Rdl | fzf --tmux 80% --preview "exa -la --header {}");commandline -f repaint'
     bind \ez 'zi; printf "%.0s\n" (seq 1 100); commandline -f repaint'
-    bind \eg fzf_grep # bad
+    # bind \eg fzf_grep # bad
 
     
     #------------------------------------------------------------------------------#
@@ -65,8 +130,8 @@ if status is-interactive
     set -gx EDITOR "nvim"
     set fzf_directory_opts --bind "ctrl-o:execute(nvim {} &> /dev/tty)"
     set --export JAVA_HOME (dirname (dirname (readlink -f (which java))))
-    set PATH $JAVA_HOME/bin $PATH
-    set -gx PATH ~/spark/bin $PATH
+    set -gx PATH "$JAVA_HOME/bin:$PATH"
+    set -gx PATH "/home/sergey/spark/bin:$PATH"
     set -Ux LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/home/sergey/anaconda3/lib/
     set -gx PATH "/usr/local/cuda/bin:$PATH"
     set -gx CUDA_HOME "/usr/local/cuda"
@@ -159,12 +224,6 @@ if status is-interactive
 
     
     #------------------------------------------------------------------------------#
-    #                                   starship                                   #
-    #------------------------------------------------------------------------------#
-    starship init fish | source
-
-
-    #------------------------------------------------------------------------------#
     #                                     conda                                    #
     #------------------------------------------------------------------------------#
     # >>> conda initialize >>>
@@ -183,7 +242,7 @@ if status is-interactive
     #------------------------------------------------------------------------------#
     #                                    zoxide                                    #
     #------------------------------------------------------------------------------#
-    zoxide init fish | source
+    # zoxide init fish | source
 
 
     #------------------------------------------------------------------------------#
@@ -199,6 +258,20 @@ if status is-interactive
     if not set -q TMUX
       tmux new-session -As 0
     end
+
+
+    #------------------------------------------------------------------------------#
+    #                                   starship                                   #
+    #------------------------------------------------------------------------------#
+    starship init fish | source
+
+
+    #------------------------------------------------------------------------------#
+    #                                   jumper                                   #
+    #------------------------------------------------------------------------------#
+    jumper shell fish | source
+    bind --erase \cU
+    bind --erase \cY
 
 
 end

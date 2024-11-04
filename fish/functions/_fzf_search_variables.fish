@@ -43,6 +43,5 @@ function _fzf_search_variables --argument-names set_show_output set_names_output
         )
     end
 
-    # commandline --function repaint
-    printf "%.0s\n" (seq 1 100); commandline -f repaint
+    commandline --function repaint
 end

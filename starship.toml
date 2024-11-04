@@ -2,4 +2,14 @@
 disabled = true
 
 [python]
+symbol = " "
 disabled = true
+
+[scala]
+symbol = " "
+# disabled = true
+
+[java]
+symbol = "󰬷 "
+# disabled = true
+# detect_files = 'pom.xml'

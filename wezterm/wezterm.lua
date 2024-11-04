@@ -7,6 +7,17 @@ wezterm.on("gui-startup", function(cmd)
   window:gui_window():maximize()
 end)
 
+wezterm.on('gui-attached', function(domain)
+  -- maximize all displayed windows on startup
+  local workspace = mux.get_active_workspace()
+  for _, window in ipairs(mux.all_windows()) do
+    if window:get_workspace() == workspace then
+      window:gui_window():maximize()
+    end
+  end
+end)
+
+
 wezterm.on('toggle-opacity', function(window, pane)
   local overrides = window:get_config_overrides() or {}
   if not overrides.window_background_opacity then
@@ -37,7 +48,7 @@ config.hide_tab_bar_if_only_one_tab = true
 config.font = wezterm.font('JetBrains Mono')
 -- config.font = wezterm.font('Monaspace Radon')
 config.font_size = 12
-config.adjust_window_size_when_changing_font_size = false
+config.adjust_window_size_when_changing_font_size = true
 
 
 -- keys
@@ -48,7 +59,10 @@ config.keys = {
   { key = 'v',  mods = 'LEADER', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
   { key = '0',  mods = 'LEADER', action = act.ShowLauncher },
   { key = 'o',  mods = 'LEADER', action = wezterm.action.EmitEvent 'toggle-opacity', },
+  { key = 'q',  mods = 'CTRL',   action = wezterm.action.QuitApplication },
 }
+
+config.window_close_confirmation = "NeverPrompt"
 
 
 -- mouth
@@ -67,6 +81,10 @@ config.default_prog = {
   '/usr/bin/fish',
   '-l',
 }
+
+-- hack to always have only 1 tab whatsoever
+config.prefer_to_spawn_tabs = true
+config.enable_tab_bar = false
 
 -- done building config!
 return config
