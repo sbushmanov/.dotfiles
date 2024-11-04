@@ -17,9 +17,15 @@ return {
         },
         {
           "<C-s>",
-          "<cmd>Telescope current_buffer_fuzzy_find<CR>",
+          "<cmd>FzfLua lgrep_curbuf<CR>",
           mode = { 'n' },
-          description = "Telescope current buffer search/find",
+          description = "FzfLua current buffer search/find",
+        },
+        {
+          "<C-g>",
+          "<cmd>FzfLua grep_project<CR>",
+          mode = { 'n' },
+          description = "FzfLua grep project",
         },
         {
           "<leader>jf",

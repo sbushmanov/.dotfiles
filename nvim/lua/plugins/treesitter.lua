@@ -3,7 +3,10 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     -- { "nvim-treesitter/nvim-treesitter-textobjects", event = "InsertEnter" }, -- TS objects
-    { "JoosepAlviste/nvim-ts-context-commentstring" },
+    {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      event = "BufRead",
+    },
   },
   build = function()
     require("nvim-treesitter.install").update({ with_sync = true })
