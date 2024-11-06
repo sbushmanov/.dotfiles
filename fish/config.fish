@@ -12,44 +12,6 @@ if status is-interactive
 
 
     #------------------------------------------------------------------------------#
-    #                                   fasd                                   #
-    #------------------------------------------------------------------------------#
-    # Load fasd
-    # if test -x /usr/bin/fasd
-    #     set -gx FASD_DATADIR ~/.local/share/fasd
-    #     set -gx FASD_TMUX 1
-    #
-    #     # Function to track files
-    #     function fasd_file
-    #         if test (count $argv) -eq 0
-    #             # If no arguments, just list files
-    #             fasd -f
-    #         else
-    #             # If arguments are given, track those files
-    #             fasd -f $argv
-    #         end
-    #     end
-    #
-    #     # Autocompletion for fasd
-    #     function __fish_fasd_complete
-    #         set -l cmd (commandline -cp)
-    #         if test (count $cmd) -eq 1
-    #             set -l file (fasd -f)
-    #             printf "%s\n" $file
-    #         end
-    #     end
-    #
-    #     # Bind the fasd function to `f` command
-    #     function f
-    #         fasd_file $argv
-    #     end
-    #
-    #     # Initialize fasd
-    #     eval (fasd --init fish)
-    # end
-
-
-    #------------------------------------------------------------------------------#
     #              Commands to run in interactive sessions can go here             #
     #------------------------------------------------------------------------------#
     # put prompt at the bottom
@@ -69,6 +31,8 @@ if status is-interactive
     alias ls lsd
     alias rmd 'rm -rf -- "$(pwd -P)" && cd ..'
     alias gore2 yaegi
+    alias d trash
+    alias restore 'trash list | fzf --tmux 80% --multi | awk '{$1=$1;print}' | rev | cut -d ' ' -f1 | rev | xargs trashy restore --match=exact --force'
     # set -gx TERMINAL alacritty
     # alias gogh 'bash -c "$(curl -sLo- https://git.io/vQgMr)"'
 
@@ -91,9 +55,9 @@ if status is-interactive
 
 
     #------------------------------------------------------------------------------#
-    #                            live grep and vim into res                        #
+    #                            live grep and vim into results                    #
     #------------------------------------------------------------------------------#
-    bind \cg fd_live_grep
+    bind \cg v_live_grep
    
     
     #------------------------------------------------------------------------------#
@@ -104,19 +68,20 @@ if status is-interactive
     # bind \cc 'cd $(fd --hidden --type d . | fzf --tmux 85%  --preview "exa -la --header {}"); printf "%.0s\n" (seq 1 100); commandline -f repaint' # good
     bind \ch '_fzf_search_history; printf "%.0s\n" (seq 1 100); commandline -f repaint' # good
     bind \cp '_fzf_search_processes; printf "%.0s\n" (seq 1 100); commandline -f repaint' # good
+    bind \cf _fzf_search_directory
     # bind \cf 'fd --hidden . | fzf --preview "if test -d {};exa -la --header {};else if test -f {};bat --style=plain --color=always {};else; {};end;" --bind "ctrl-o:execute(nvim {} &> /dev/tty)"'
     # bind \cf '_fzf_search_directory; printf "%.0s\n" (seq 1 100); commandline -f repaint' # update for jumper
-    fzf_configure_bindings --variables=\e\cv
+    fzf_configure_bindings --variables=\ev
 
 
     #------------------------------------------------------------------------------#
     #                            external command binds \e                           #
     #------------------------------------------------------------------------------#
     # bind \en fn
-    bind \ev 'v (fd --hidden . | fzf --tmux 85% --preview "if test -d {};exa -la --header {};else if test -f {};bat --style=plain --color=always {};else; {};end;")'
+    # bind \ev 'v (fd -H -tf -td . | fzf --tmux 85% --preview "if test -d {};exa -la --header {};else if test -f {};bat --style=plain --color=always {};else; {};end;")'
     # bind \ee 'v (f -Rfl | fzf --tmux 80% --preview "bat --style=plain --color=always {}")'
     # bind \ec 'cd $(f -Rdl | fzf --tmux 80% --preview "exa -la --header {}");commandline -f repaint'
-    bind \ez 'zi; printf "%.0s\n" (seq 1 100); commandline -f repaint'
+    # bind \ez 'zi; printf "%.0s\n" (seq 1 100); commandline -f repaint'
     # bind \eg fzf_grep # bad
 
     
@@ -132,11 +97,13 @@ if status is-interactive
     set --export JAVA_HOME (dirname (dirname (readlink -f (which java))))
     set -gx PATH "$JAVA_HOME/bin:$PATH"
     set -gx PATH "/home/sergey/spark/bin:$PATH"
+    set -gx PATH "/home/sergey/hive/bin:$PATH"
     set -Ux LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/home/sergey/anaconda3/lib/
     set -gx PATH "/usr/local/cuda/bin:$PATH"
     set -gx CUDA_HOME "/usr/local/cuda"
     # set --export PATH "$JAVA_HOME/bin:$PATH"
     # set -gx FZF_DEFAULT_COMMAND 'fd . --hidden'
+    export JAVA_OPTS='--add-exports java.base/sun.nio.ch=ALL-UNNAMED'
 
     
     #------------------------------------------------------------------------------#
@@ -188,7 +155,7 @@ if status is-interactive
     #------------------------------------------------------------------------------#
     #                                     jump                                     #
     #------------------------------------------------------------------------------#
-    jump shell fish | source
+    # jump shell fish | source
 
     
     #------------------------------------------------------------------------------#

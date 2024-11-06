@@ -1,6 +1,11 @@
 return {
   "scalameta/nvim-metals",
-  dependencies = { "nvim-lua/plenary.nvim", "mfussenegger/nvim-dap", "SmiteshP/nvim-navic", 'nvimdev/lspsaga.nvim',},
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "mfussenegger/nvim-dap",
+    -- "SmiteshP/nvim-navic",
+    'nvimdev/lspsaga.nvim',
+  },
   ft = { "scala", "sbt", "sc" },
   config = function()
     vim.opt_global.shortmess:remove("F") --	don't give the file info when editing a file
@@ -62,16 +67,12 @@ return {
     }
 
     local on_attach = function(client, bufnr)
-      -- breadcrumbs in lualine
-      if client.server_capabilities.documentSymbolProvider then
-        local navic = require("nvim-navic")
-        navic.attach(client, bufnr)
-      end
-
       require("metals").setup_dap()
     end
 
     metals_config.on_attach = on_attach
+
+    require('telescope').load_extension('dap')
 
     -- Autocmd that will actually be in charging of starting the whole thing
     local nvim_metals_group = api.nvim_create_augroup("nvim-metals", { clear = true })

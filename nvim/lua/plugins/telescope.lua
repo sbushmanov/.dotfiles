@@ -7,6 +7,7 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-fzf-native.nvim",
     "nvim-telescope/telescope-project.nvim",
+    "nvim-telescope/telescope-dap.nvim",
     -- "cljoly/telescope-repo.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
     -- "ahmedkhalf/project.nvim",
@@ -36,5 +37,6 @@ return {
         }
       },
     })
+    require('telescope').load_extension('dap')
   end,
 }

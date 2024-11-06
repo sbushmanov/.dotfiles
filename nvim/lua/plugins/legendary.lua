@@ -9,12 +9,24 @@ return {
     require("legendary").setup({
       extensions = { lazy_nvim = true },
       keymaps = {
+        -- {
+        --   "<leader>d",
+        --   ":Telescope dap commands<CR>",
+        --   mode = { 'n' },
+        --   description = "Telescope dap commands",
+        -- },
         {
           "<leader>fo",
           ":lua require('ufo').setup({})<CR>",
           mode = { 'n' },
           description = "Enable ufo folding plugin",
         },
+        -- {
+        --   "<leader>t",
+        --   "<cmd>NnnExplorer<CR>",
+        --   mode = { 'n' },
+        --   description = "Open NNN explorer side bar",
+        -- },
         {
           "<C-s>",
           "<cmd>FzfLua lgrep_curbuf<CR>",
@@ -215,8 +227,8 @@ return {
         { "<C-f>",      ":FzfLua oldfiles<cr>",                   description = "Fzf file history" },
         { "<leader>fv", ":FzfLua commands<cr>",                   description = "Fzf commands" },
         { "<leader>fc", ":FzfLua colorscheme<cr>",                description = "fzf colorscheme" },
-        { "dr",         ":lua  require('dap').repl.toggle()<cr>", description = "DAP repl" },
-        { "dc",         ":lua  require('dap').continue()<cr>",    description = "DAP continue" },
+        { "dr",         ":lua require('dap').repl.toggle()<cr>",  description = "DAP repl" },
+        { "dc",         ":lua require('dap').continue()<cr>",     description = "DAP continue" },
         { "<leader>gf", ":Lspsaga finder<CR>",                    description = "Lspsaga finder" },
         { "<leader>lf", ":Lspsaga finder<CR>",                    description = "Lspsaga finder" },
         { "<leader>ca", ":Lspsaga code_action<CR>",               description = "Lspsaga code action" },
@@ -316,13 +328,16 @@ return {
           "<cmd>:lua vim.diagnostic.goto_next()<CR>",
           description = "Vim next diagnostic",
         },
-
         {
           "<A-o>",
           "<cmd>Lspsaga outline<CR>",
           description = "Lspsaga project outline",
         },
-        -- { "K", "<cmd>Lspsaga hover_doc<CR>", description = "Lspsaga hover doc" },
+        -- {
+        --   "K",
+        --   "<cmd>Lspsaga hover_doc<CR>",
+        --   description = "Lspsaga hover doc"
+        -- },
         {
           "?",
           "<cmd>Lspsaga hover_doc<CR>",

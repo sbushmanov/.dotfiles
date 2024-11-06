@@ -1,4 +1,4 @@
-function fd_live_grep
+function v_live_grep
     set RG_PREFIX "fd -H -tf --absolute-path | xargs rg -i --column --line-number --color=always "
 
     fzf --ansi --disabled --query '' \

@@ -82,9 +82,7 @@ return {
 
       lspconfig.jsonls.setup {}
       lspconfig.yamlls.setup {}
-      lspconfig.eslint.setup {}
-      lspconfig.marksman.setup {}
-      lspconfig.smithy_ls.setup {}
+      lspconfig.gopls.setup {}
 
       -- lspconfig.pylsp.setup {
       --   settings = {
@@ -196,7 +194,10 @@ return {
             },
             workspace = {
               -- Make the server aware of Neovim runtime files
-              library = vim.api.nvim_get_runtime_file("", true),
+              library = {
+                vim.api.nvim_get_runtime_file("", true),
+                "${3rd}/luv/library",
+              },
             },
             -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {

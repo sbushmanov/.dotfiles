@@ -28,6 +28,6 @@ function _fzf_search_directory --description "Search the current directory. Repl
     if test $status -eq 0
         commandline --current-token --replace -- (string escape -- $file_paths_selected | string join ' ')
     end
-
+    printf "%.0s\n" (seq 1 100)
     commandline --function repaint
 end

@@ -70,7 +70,7 @@ opt.wildignore:append "**/.git/*"
 --   set shortmess-=F
 -- ]]
 
--- upadte jumper filename db
+-- update jumper filename db
 vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPre" }, {
     pattern = { "*" },
     callback = function(ev)
