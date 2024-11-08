@@ -1,6 +1,6 @@
 return {
   "ray-x/lsp_signature.nvim",
-  event = { "InsertEnter" },
+  event = { "VeryLazy" },
   lazy = true,
   config = function()
     require("lsp_signature").on_attach {

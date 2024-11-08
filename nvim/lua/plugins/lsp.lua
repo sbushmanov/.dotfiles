@@ -30,13 +30,15 @@ return {
     "neovim/nvim-lspconfig",
     -- ft = { "sc", "scala", "lua", "go"},
     -- event = { "VeryLazy" },
-    lazy = false,
-    cmd = { "LspInfo", "LspInstall", "InsertEnter" },
+    -- lazy = false,
+    -- cmd = { "LspInfo", "LspInstall", "InsertEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       'nvimdev/lspsaga.nvim',
     },
     config = function()
+      require('mason').setup({})
+
       local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
