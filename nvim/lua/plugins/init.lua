@@ -1,5 +1,4 @@
 return {
-  -- { "danth/pathfinder.vim",    lazy = false },
   { "nvim-lua/plenary.nvim",   event = "VeryLazy" },
   { "mfussenegger/nvim-dap",   event = "VeryLazy" },
   { "tpope/vim-unimpaired",    event = "VeryLazy" },
