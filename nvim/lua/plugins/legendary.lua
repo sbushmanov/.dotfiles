@@ -9,17 +9,6 @@ return {
     require("legendary").setup({
       extensions = { lazy_nvim = true },
       keymaps = {
-        -- {
-        --   "<leader>d",
-        --   ":Telescope dap commands<CR>",
-        --   mode = { 'n' },
-        --   description = "Telescope dap commands",
-        -- },
-        -- {
-        --   "<A-n>",
-        --   "<cmd>Neotree toggle<cr>",
-        --   desc = "NeoTree file manager toggle",
-        -- },
         {
           "<A-u>",
           "<cmd>lua require('telescope').extensions.undo.undo()<cr>",
@@ -31,12 +20,6 @@ return {
           mode = { 'n' },
           description = "Enable ufo folding plugin",
         },
-        -- {
-        --   "<leader>t",
-        --   "<cmd>NnnExplorer<CR>",
-        --   mode = { 'n' },
-        --   description = "Open NNN explorer side bar",
-        -- },
         {
           "<C-s>",
           "<cmd>FzfLua lgrep_curbuf<CR>",

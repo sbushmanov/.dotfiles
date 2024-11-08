@@ -15,6 +15,7 @@ return {
     "prochri/telescope-all-recent.nvim",
     "nvim-telescope/telescope-symbols.nvim",
     "debugloop/telescope-undo.nvim",
+    'nvim-telescope/telescope-ui-select.nvim',
     {
       "adoyle-h/lsp-toggle.nvim",
       dependencies = { "keyvchan/telescope-find-pickers.nvim" },
@@ -46,9 +47,13 @@ return {
         auto_validate = false,
         matcher = "fuzzy",
         path_display = { "shorten" }
-      }
+      },
+      ['ui-select'] = {
+        require("telescope.themes").get_dropdown({})
+      },
     }
     require('telescope').load_extension('dap')
     require('telescope').load_extension('find_pickers')
+    require("telescope").load_extension("ui-select")
   end,
 }

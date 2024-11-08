@@ -1,7 +1,7 @@
 return {
   'nvimdev/lspsaga.nvim',
-  -- event = "VeryLazy",
-  -- lazy = "true",
+  event = "VeryLazy",
+  -- lazy = false,
   config = function()
     require('lspsaga').setup({})
   end,

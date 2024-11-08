@@ -2,77 +2,41 @@ return {
   {
     "folke/lazydev.nvim",
     ft = { 'lua' },
-    opts = {}
+    opts = {},
+    config = function()
+      require("lazydev").setup({})
+    end
   },
   {
+    -- installer for LSP servers, DAP servers, linters, and formatters
+    "williamboman/mason.nvim",
+    build = ":MasonUpdate",
+    cmd = "Mason",
+    config = function()
+      require("mason").setup({})
+    end
+  },
+  {
+    -- configures LSP servers installed with Mason
     "williamboman/mason-lspconfig.nvim",
-    -- event = "VeryLazy",
-    dependencies = {
-      { "williamboman/mason.nvim", build = ":MasonUpdate" },
-      -- "SmiteshP/nvim-navic",   -- lua line
-      -- "kevinhwang91/nvim-ufo", -- code folding
-    }
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "debugpy", "pyright", "lua_ls", "bashls", "gopls", "jsonls", "yamlls", "ruff", "rust_analyzer" },
+      })
+    end
   },
   {
+    -- allows NVIM to set up communication to LSP servers
     "neovim/nvim-lspconfig",
     -- ft = { "sc", "scala", "lua", "go"},
-    event = { "VeryLazy" },
+    -- event = { "VeryLazy" },
+    lazy = false,
     cmd = { "LspInfo", "LspInstall", "InsertEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       'nvimdev/lspsaga.nvim',
-      -- {
-      --   "SmiteshP/nvim-navbuddy",
-      --   event = "VeryLazy",
-      --   dependencies = {
-      --     "SmiteshP/nvim-navic",
-      --     "MunifTanjim/nui.nvim"
-      --   },
-      --   opts = {
-      --     lsp = { auto_attach = true }
-      --   },
-      -- }
     },
     config = function()
-      -- require("lazydev").setup({})
-      local mason = require("mason")
-      local mason_options = {
-        ensure_installed = { "debugpy" }, -- not an option from mason.nvim
-        max_concurrent_installers = 10,
-      }
-      mason.setup(mason_options)
-      vim.api.nvim_create_user_command("MasonInstallAll", function()
-        vim.cmd("MasonInstall " .. table.concat(mason_options.ensure_installed, " "))
-      end, {})
-
-      -- call the above command on neovim startup - runs every time even if a package is already installed. And brings up the Mason UI
-      -- vim.api.nvim_create_autocmd("VimEnter", {
-      --   callback = function()
-      --     vim.cmd("MasonInstallAll")
-      --   end
-      -- })
-
-      -- Runs on startup but does not notify you
-      local registry = require("mason-registry")
-
-      local packages = {
-        "debugpy",
-      }
-
-      registry.refresh(function()
-        for _, pkg_name in ipairs(packages) do
-          local pkg = registry.get_package(pkg_name)
-          if not pkg:is_installed() then
-            pkg:install()
-          end
-        end
-      end)
-
-      local mason_lspconfig = require("mason-lspconfig")
-      mason_lspconfig.setup({
-        automatic_installation = true,
-      })
-
       local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
       for type, icon in pairs(signs) do
         local hl = "DiagnosticSign" .. type
@@ -85,62 +49,6 @@ return {
       lspconfig.yamlls.setup {}
       lspconfig.gopls.setup {}
 
-      -- lspconfig.pylsp.setup {
-      --   settings = {
-      --     pylsp = {
-      --       plugins = {
-      --         flake8 = {
-      --           enabled = true,
-      --           -- pyright overlap
-      --           ignore = { 'F811', 'F401', 'F821', 'F841', 'E501', 'W503' },
-      --         },
-      --         pycodestyle = {
-      --           enabled = true,
-      --         },
-      --         autopep8 = {
-      --           enabled = false,
-      --         },
-      --         yapf = {
-      --           enabled = true,
-      --         },
-      --       },
-      --     },
-      --   },
-      -- }
-      --
-      -- lspconfig.pyright.setup {
-      --   settings = {
-      --     pyright = {
-      --       disableOrganizeImports = true, -- Using Ruff
-      --     },
-      --     python = {
-      --       analysis = {
-      --         typeCheckingMode = "off", -- ruff
-      --         diagnosticSeverityOverrides = {
-      --           reportConstantRedefinition = "warning",
-      --           reportDuplicateImport = "warning",
-      --           reportMissingSuperCall = "warning",
-      --           reportUnnecessaryCast = "warning",
-      --           reportUnnecessaryComparison = "warning",
-      --           reportUnnecessaryContains = "warning",
-      --           reportCallInDefaultInitializer = "info",
-      --           reportFunctionMemberAccess = "info",
-      --           reportImportCycles = "info",
-      --           reportMatchNotExhaustive = "info",
-      --           reportShadowedImports = "info",
-      --           reportUninitializedInstanceVariable = "info",
-      --           reportUnnecessaryIsInstance = "info",
-      --           reportUnusedClass = "info",
-      --           reportUnusedFunction = "info",
-      --           reportUnusedImport = "info",
-      --           reportUnusedVariable = "info",
-      --         },
-      --       },
-      --     },
-      --   }
-      -- }
-
-      -- HERE !!!
       lspconfig.pyright.setup {
         settings = {
           python = {
@@ -209,14 +117,6 @@ return {
         }
       })
 
-      -- breadcrumbs in lualine
-      -- local navic = require("nvim-navic")
-      -- local on_attach = function(client, bufnr)
-      --   if client.server_capabilities.documentSymbolProvider then
-      --     navic.attach(client, bufnr)
-      --   end
-      -- end
-
       -- enable completion on all lsp instances
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -239,8 +139,9 @@ return {
           })
         end,
       }
-      mason_lspconfig.setup_handlers(handlers)
-      -- enable completion on all lsp instances
+
+      require("mason-lspconfig").setup_handlers(handlers)
+
     end,
   },
 
