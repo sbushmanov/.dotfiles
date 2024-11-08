@@ -17,7 +17,7 @@
   "jumper.nvim": { "branch": "master", "commit": "899efcd3b1f2892393b7d8db4ee4932daba05e41" },
   "lazy.nvim": { "branch": "main", "commit": "b1134ab82ee4279e31f7ddf7e34b2a99eb9b7bc9" },
   "lazydev.nvim": { "branch": "main", "commit": "d5800897d9180cea800023f2429bce0a94ed6064" },
-  "legendary.nvim": { "branch": "master", "commit": "5086c5ac463ce0288f0eea7e9d23e529edf770fd" },
+  "legendary.nvim": { "branch": "master", "commit": "94bde687f0b9d41b6113db12e86421909234186f" },
   "lsp-toggle.nvim": { "branch": "master", "commit": "501d647de54398373d87ba3c8ea638e2edc2cbe9" },
   "lsp_signature.nvim": { "branch": "master", "commit": "fc38521ea4d9ec8dbd4c2819ba8126cea743943b" },
   "lspkind.nvim": { "branch": "master", "commit": "a700f1436d4a938b1a1a93c9962dc796afbaef4d" },

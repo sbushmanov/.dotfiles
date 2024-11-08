@@ -5,10 +5,17 @@ return {
     opts = {}
   },
   {
+    "williamboman/mason.nvim",
+    build = ":MasonUpdate",
+    config = function()
+      require("mason").setup({})
+    end
+  },
+  {
     "williamboman/mason-lspconfig.nvim",
-    dependencies = {
-      { "williamboman/mason.nvim", build = ":MasonUpdate" },
-    }
+    config = function()
+      ensure_installed = { "debugpy", "pyright", "bashls","lua_ls", "gopls", "jsonls", "awk_ls", "yamlls" }
+    end
   },
   {
     "neovim/nvim-lspconfig",
@@ -21,38 +28,6 @@ return {
     },
     config = function()
       -- require("lazydev").setup({})
-      local mason = require("mason")
-      local mason_options = {
-        ensure_installed = { "debugpy" }, -- not an option from mason.nvim
-        max_concurrent_installers = 10,
-      }
-      mason.setup(mason_options)
-      vim.api.nvim_create_user_command("MasonInstallAll", function()
-        vim.cmd("MasonInstall " .. table.concat(mason_options.ensure_installed, " "))
-      end, {})
-
-      -- call the above command on neovim startup - runs every time even if a package is already installed. And brings up the Mason UI
-      vim.api.nvim_create_autocmd("VimEnter", {
-        callback = function()
-          vim.cmd("MasonInstallAll")
-        end
-      })
-
-      -- Runs on startup but does not notify you
-      local registry = require("mason-registry")
-
-      local packages = {
-        "debugpy",
-      }
-
-      registry.refresh(function()
-        for _, pkg_name in ipairs(packages) do
-          local pkg = registry.get_package(pkg_name)
-          if not pkg:is_installed() then
-            pkg:install()
-          end
-        end
-      end)
 
       local mason_lspconfig = require("mason-lspconfig")
       mason_lspconfig.setup({
@@ -71,8 +46,6 @@ return {
       lspconfig.yamlls.setup {}
       lspconfig.gopls.setup {}
 
-
-      -- HERE !!!
       lspconfig.pyright.setup {
         settings = {
           python = {
@@ -124,7 +97,7 @@ return {
             diagnostics = {
               -- Get the language server to recognize the `vim` global
               globals = { "vim", "require" },
-              disable = {"missing-parameters", "missing-fields", "lowercase-global"},
+              disable = { "missing-parameters", "missing-fields", "lowercase-global" },
             },
             workspace = {
               -- Make the server aware of Neovim runtime files
