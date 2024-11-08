@@ -23,7 +23,7 @@ return {
         {
           "<A-u>",
           "<cmd>lua require('telescope').extensions.undo.undo()<cr>",
-          desc = "Telesope undo history",
+          desc = "Telesope undo tree history",
         },
         {
           "<leader>fo",

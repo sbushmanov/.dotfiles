@@ -6,7 +6,6 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    event = "VeryLazy",
     dependencies = {
       { "williamboman/mason.nvim", build = ":MasonUpdate" },
       -- "SmiteshP/nvim-navic",   -- lua line
@@ -16,7 +15,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     -- ft = { "sc", "scala", "lua", "go"},
-    event = { "VeryLazy" },
+    event = { "CursorMoved", "BufNewFile" },
     cmd = { "LspInfo", "LspInstall", "InsertEnter" },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
@@ -192,7 +191,7 @@ return {
             diagnostics = {
               -- Get the language server to recognize the `vim` global
               globals = { "vim", "require" },
-              disable = { "missing-parameters", "missing-fields", "lowercase-global" },
+              disable = {"missing-parameters", "missing-fields", "lowercase-global"},
             },
             workspace = {
               -- Make the server aware of Neovim runtime files
