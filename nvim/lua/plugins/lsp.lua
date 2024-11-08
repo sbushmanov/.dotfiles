@@ -8,8 +8,6 @@ return {
     "williamboman/mason-lspconfig.nvim",
     dependencies = {
       { "williamboman/mason.nvim", build = ":MasonUpdate" },
-      -- "SmiteshP/nvim-navic",   -- lua line
-      -- "kevinhwang91/nvim-ufo", -- code folding
     }
   },
   {
@@ -20,17 +18,6 @@ return {
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       'nvimdev/lspsaga.nvim',
-      -- {
-      --   "SmiteshP/nvim-navbuddy",
-      --   event = "VeryLazy",
-      --   dependencies = {
-      --     "SmiteshP/nvim-navic",
-      --     "MunifTanjim/nui.nvim"
-      --   },
-      --   opts = {
-      --     lsp = { auto_attach = true }
-      --   },
-      -- }
     },
     config = function()
       -- require("lazydev").setup({})
@@ -45,11 +32,11 @@ return {
       end, {})
 
       -- call the above command on neovim startup - runs every time even if a package is already installed. And brings up the Mason UI
-      -- vim.api.nvim_create_autocmd("VimEnter", {
-      --   callback = function()
-      --     vim.cmd("MasonInstallAll")
-      --   end
-      -- })
+      vim.api.nvim_create_autocmd("VimEnter", {
+        callback = function()
+          vim.cmd("MasonInstallAll")
+        end
+      })
 
       -- Runs on startup but does not notify you
       local registry = require("mason-registry")
@@ -84,60 +71,6 @@ return {
       lspconfig.yamlls.setup {}
       lspconfig.gopls.setup {}
 
-      -- lspconfig.pylsp.setup {
-      --   settings = {
-      --     pylsp = {
-      --       plugins = {
-      --         flake8 = {
-      --           enabled = true,
-      --           -- pyright overlap
-      --           ignore = { 'F811', 'F401', 'F821', 'F841', 'E501', 'W503' },
-      --         },
-      --         pycodestyle = {
-      --           enabled = true,
-      --         },
-      --         autopep8 = {
-      --           enabled = false,
-      --         },
-      --         yapf = {
-      --           enabled = true,
-      --         },
-      --       },
-      --     },
-      --   },
-      -- }
-      --
-      -- lspconfig.pyright.setup {
-      --   settings = {
-      --     pyright = {
-      --       disableOrganizeImports = true, -- Using Ruff
-      --     },
-      --     python = {
-      --       analysis = {
-      --         typeCheckingMode = "off", -- ruff
-      --         diagnosticSeverityOverrides = {
-      --           reportConstantRedefinition = "warning",
-      --           reportDuplicateImport = "warning",
-      --           reportMissingSuperCall = "warning",
-      --           reportUnnecessaryCast = "warning",
-      --           reportUnnecessaryComparison = "warning",
-      --           reportUnnecessaryContains = "warning",
-      --           reportCallInDefaultInitializer = "info",
-      --           reportFunctionMemberAccess = "info",
-      --           reportImportCycles = "info",
-      --           reportMatchNotExhaustive = "info",
-      --           reportShadowedImports = "info",
-      --           reportUninitializedInstanceVariable = "info",
-      --           reportUnnecessaryIsInstance = "info",
-      --           reportUnusedClass = "info",
-      --           reportUnusedFunction = "info",
-      --           reportUnusedImport = "info",
-      --           reportUnusedVariable = "info",
-      --         },
-      --       },
-      --     },
-      --   }
-      -- }
 
       -- HERE !!!
       lspconfig.pyright.setup {
@@ -208,13 +141,8 @@ return {
         }
       })
 
-      -- breadcrumbs in lualine
-      -- local navic = require("nvim-navic")
-      -- local on_attach = function(client, bufnr)
-      --   if client.server_capabilities.documentSymbolProvider then
-      --     navic.attach(client, bufnr)
-      --   end
-      -- end
+      local on_attach = function(client, bufnr)
+      end
 
       -- enable completion on all lsp instances
       local capabilities = vim.lsp.protocol.make_client_capabilities()
