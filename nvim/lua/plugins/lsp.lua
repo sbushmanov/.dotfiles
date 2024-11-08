@@ -6,7 +6,7 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    event = "VeryLazy",
+    -- event = "VeryLazy",
     dependencies = {
       { "williamboman/mason.nvim", build = ":MasonUpdate" },
       -- "SmiteshP/nvim-navic",   -- lua line
