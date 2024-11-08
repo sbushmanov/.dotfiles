@@ -1,9 +1,12 @@
 return {
   "nvim-lualine/lualine.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons", "SmiteshP/nvim-navic" },
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    -- "SmiteshP/nvim-navic"
+  },
   event = "VeryLazy",
   config = function()
-    local navic = require("nvim-navic")
+    -- local navic = require("nvim-navic")
     require("lualine").setup({
       options = {
         icons_enabled = true,

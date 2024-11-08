@@ -191,6 +191,7 @@ return {
             diagnostics = {
               -- Get the language server to recognize the `vim` global
               globals = { "vim", "require" },
+              disable = {"missing-parameters", "missing-fields", "lowercase-global"},
             },
             workspace = {
               -- Make the server aware of Neovim runtime files

@@ -2,11 +2,10 @@ return {
   "aznhe21/actions-preview.nvim",
   -- event = { "BufReadPre", "BufNewFile" },
   config = function()
-    require("actions-preview").setup {
       diff = {
         ctxlen = 3,
-      },
-      backend = { "telescope" },
+      }
+      backend = { "telescope" }
       telescope = {
         sorting_strategy = "ascending",
         layout_strategy = "vertical",
@@ -19,8 +18,7 @@ return {
             return max_lines - 15
           end,
         },
-      },
-    }
+      }
   end,
   enabled = true
 }

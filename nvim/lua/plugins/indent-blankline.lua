@@ -1,6 +1,6 @@
 return {
   "lukas-reineke/indent-blankline.nvim",
-  event = "VeryLazy",
+  event = { "CursorMoved", "BufNewFile" },
   main = "ibl",
   config = function()
     -- vim.opt.list = true

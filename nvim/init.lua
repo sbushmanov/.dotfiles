@@ -1,4 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -10,33 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 
-local builtins = {
-    "gzip",
-    "zip",
-    "zipPlugin",
-    "tar",
-    "tarPlugin",
-    "getscript",
-    "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
-    "2html_plugin",
-    "matchit",
-    -- "matchparen",
-    "logiPat",
-    "rrhelper",
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-}
-
-for _, plugin in ipairs(builtins) do
-    vim.g["loaded_" .. plugin] = 1
-end
-
 vim.opt.rtp:prepend(lazypath)
-vim.g.loaded_ruby_provider = 0
 
 require("defaults")
 require("keymaps")
