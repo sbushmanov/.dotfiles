@@ -4,6 +4,4 @@ function nnn_jumper_directories_abstract
         jumper update -f ~/.jfolders "$selected_dir"
         n "$selected_dir"
     end
-    printf "%.0s\n" (seq 1 100)
-    commandline -f repaint
 end

@@ -14,7 +14,7 @@ return {
     "nvim-telescope/telescope-frecency.nvim",
     "prochri/telescope-all-recent.nvim",
     "nvim-telescope/telescope-symbols.nvim",
-    "debugloop/telescope-undo.nvim",
+    'debugloop/telescope-undo.nvim',
     {
       "adoyle-h/lsp-toggle.nvim",
       dependencies = { "keyvchan/telescope-find-pickers.nvim" },

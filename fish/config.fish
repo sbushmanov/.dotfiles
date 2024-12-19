@@ -24,6 +24,7 @@ if status is-interactive
     alias v nvim
     alias vh v_jumper_files_exact
     alias vi v_jumper_files_abstract
+    alias vf v_jumper_files_abstract
     # alias vf 'fzf --tmux 85% --preview "bat --color always {}"  --exit-0 | xargs -r nvim || true'
     # alias fn 'n (fzf --tmux 85% --walker="dir,hidden" --preview "exa -la {}"); printf "%.0s\n" (seq 1 100); commandline -f repaint'
     alias ll 'eza -la --icons --git -a'
@@ -40,7 +41,7 @@ if status is-interactive
     #------------------------------------------------------------------------------#
     #                            abstract and update db                            #
     #------------------------------------------------------------------------------#
-    bind \ce v_jumper_files_abstract
+    bind \ce 'v_jumper_files_abstract; printf "%.0s\n" (seq 1 100); commandline -f repaint'
     bind \cc 'cd_jumper_directories_abstract; printf "%.0s\n" (seq 1 100); commandline -f repaint'
     bind \cn 'nnn_jumper_directories_abstract; printf "%.0s\n" (seq 1 100); commandline -f repaint'
 
@@ -48,9 +49,9 @@ if status is-interactive
     #------------------------------------------------------------------------------#
     #                            exact db                                          #
     #------------------------------------------------------------------------------#
-    bind \ee v_jumper_files_exact
-    bind \ec cd_jumper_directories_exact
-    bind \en nnn_jumper_directories_exact
+    bind \ee 'v_jumper_files_exact; printf "%.0s\n" (seq 1 100); commandline -f repaint'
+    bind \ec 'cd_jumper_directories_exact; printf "%.0s\n" (seq 1 100); commandline -f repaint'
+    bind \en 'nnn_jumper_directories_exact; printf "%.0s\n" (seq 1 100); commandline -f repaint'
     
 
 
@@ -96,14 +97,13 @@ if status is-interactive
     set fzf_directory_opts --bind "ctrl-o:execute(nvim {} &> /dev/tty)"
     set --export JAVA_HOME (dirname (dirname (readlink -f (which java))))
     set -gx PATH "$JAVA_HOME/bin:$PATH"
-    set -gx PATH "/home/sergey/spark/bin:$PATH"
     set -gx PATH "/home/sergey/hive/bin:$PATH"
     set -Ux LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/home/sergey/anaconda3/lib/
     set -gx PATH "/usr/local/cuda/bin:$PATH"
     set -gx CUDA_HOME "/usr/local/cuda"
     # set --export PATH "$JAVA_HOME/bin:$PATH"
     # set -gx FZF_DEFAULT_COMMAND 'fd . --hidden'
-    export JAVA_OPTS='--add-exports java.base/sun.nio.ch=ALL-UNNAMED'
+    # export JAVA_OPTS='--add-exports java.base/sun.nio.ch=ALL-UNNAMED'
 
     
     #------------------------------------------------------------------------------#
@@ -135,7 +135,9 @@ if status is-interactive
     #------------------------------------------------------------------------------#
     #                                     spark                                    #
     #------------------------------------------------------------------------------#
-    set -gx PATH "/home/sergey/spark/bin:$PATH"
+    set SPARK_HOME /home/sergey/spark
+    set -gx PATH "$SPARK_HOME/bin:$PATH"
+    set --export SPARK_CONF_DIR $SPARK_HOME/conf
     
     
     #------------------------------------------------------------------------------#
@@ -201,7 +203,7 @@ if status is-interactive
     # <<< conda initialize <<<
     if test -f ~/anaconda3/bin/conda
       source ~/anaconda3/etc/fish/conf.d/conda.fish
-      set -gx PATH "/home/sergey/anaconda3/bin/:$PATH"
+      set -gx PATH "$PATH:/home/sergey/anaconda3/bin"
       export PYTHON_NAME="base"
     end
 
@@ -240,7 +242,17 @@ if status is-interactive
     bind --erase \cU
     bind --erase \cY
 
+    #------------------------------------------------------------------------------#
+    #                                   coursier                                   #
+    #------------------------------------------------------------------------------#
+    eval "$(cs java --jvm temurin:1.17 --env)"
+
 
 end
 
 set fish_greeting
+
+# >>> JVM installed by coursier >>>
+set -gx JAVA_HOME "/home/sergey/.cache/coursier/arc/https/github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.13%252B11/OpenJDK17U-jdk_x64_linux_hotspot_17.0.13_11.tar.gz/jdk-17.0.13+11"
+set -gx PATH "$PATH:/home/sergey/.cache/coursier/arc/https/github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.13%252B11/OpenJDK17U-jdk_x64_linux_hotspot_17.0.13_11.tar.gz/jdk-17.0.13+11/bin"
+# <<< JVM installed by coursier <<<

@@ -1,6 +1,7 @@
 return {
-  keys = "<leader>ww",
   "vimwiki/vimwiki",
+  keys = "<leader>ww",
+  cmd = { "VimwikiIndex", "VimwikiUISelect", "VimwikiMakeDiaryNote", "VimwikiDiaryIndex" },
   branch = "dev",
   init = function()
     vim.g.vimwiki_list = {

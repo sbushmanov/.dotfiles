@@ -31,4 +31,12 @@ return {
       require('mini.surround').setup({})
     end,
   },
+  {
+    "echasnovski/mini.sessions",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require('mini.surround').setup({})
+    end,
+  },
 }
