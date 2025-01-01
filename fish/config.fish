@@ -34,6 +34,7 @@ if status is-interactive
     alias gore2 yaegi
     alias d trash
     alias restore 'trash list | fzf --tmux 80% --multi | awk '{$1=$1;print}' | rev | cut -d ' ' -f1 | rev | xargs trashy restore --match=exact --force'
+    alias hs "hishtory tquery"
     # set -gx TERMINAL alacritty
     # alias gogh 'bash -c "$(curl -sLo- https://git.io/vQgMr)"'
 
@@ -98,14 +99,13 @@ if status is-interactive
     set --export JAVA_HOME (dirname (dirname (readlink -f (which java))))
     set -gx PATH "$JAVA_HOME/bin:$PATH"
     set -gx PATH "/home/sergey/hive/bin:$PATH"
-    set -Ux LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/home/sergey/anaconda3/lib/
+    # set -Ux LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/home/sergey/anaconda3/lib/
     set -gx PATH "/usr/local/cuda/bin:$PATH"
     set -gx CUDA_HOME "/usr/local/cuda"
     # set --export PATH "$JAVA_HOME/bin:$PATH"
     # set -gx FZF_DEFAULT_COMMAND 'fd . --hidden'
     # export JAVA_OPTS='--add-exports java.base/sun.nio.ch=ALL-UNNAMED'
 
-    
     #------------------------------------------------------------------------------#
     #                                     ruby                                     #
     #------------------------------------------------------------------------------#
@@ -256,3 +256,7 @@ set fish_greeting
 set -gx JAVA_HOME "/home/sergey/.cache/coursier/arc/https/github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.13%252B11/OpenJDK17U-jdk_x64_linux_hotspot_17.0.13_11.tar.gz/jdk-17.0.13+11"
 set -gx PATH "$PATH:/home/sergey/.cache/coursier/arc/https/github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.13%252B11/OpenJDK17U-jdk_x64_linux_hotspot_17.0.13_11.tar.gz/jdk-17.0.13+11/bin"
 # <<< JVM installed by coursier <<<
+
+# Hishtory Config:
+export PATH="$PATH:/home/sergey/.hishtory"
+source /home/sergey/.hishtory/config.fish
