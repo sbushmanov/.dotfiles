@@ -39,4 +39,12 @@ return {
       require('mini.surround').setup({})
     end,
   },
+  {
+    "echasnovski/mini.ai",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require('mini.surround').setup({})
+    end,
+  },
 }

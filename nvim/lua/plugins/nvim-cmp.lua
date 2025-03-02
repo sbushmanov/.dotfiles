@@ -5,7 +5,7 @@ return {
   dependencies = {
     "hrsh7th/cmp-buffer",           -- source for text in buffer
     "hrsh7th/cmp-path",             -- source for file system paths
-    "L3MON4D3/LuaSnip",             -- snippet engine
+    {"L3MON4D3/LuaSnip", run = "make install_jsregexp"},             -- snippet engine
     "saadparwaiz1/cmp_luasnip",     -- for autocompletion
     "rafamadriz/friendly-snippets", -- useful snippets
     "onsails/lspkind.nvim",         -- vs-code like pictograms
@@ -15,6 +15,7 @@ return {
     local luasnip = require("luasnip")
     local lspkind = require("lspkind")
     require("luasnip.loaders.from_vscode").lazy_load()
+    -- require("luasnip.loaders.from_lua").load({paths = "./snippets"})
 
     cmp.setup({
       completion = {

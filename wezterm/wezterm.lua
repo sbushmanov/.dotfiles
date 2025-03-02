@@ -45,7 +45,8 @@ config.enable_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 
 -- fonts
-config.font = wezterm.font('JetBrains Mono')
+config.font = wezterm.font('JetBrainsMono Nerd Font')
+-- config.font = wezterm.font('FiraMono Nerd Font')
 -- config.font = wezterm.font('Monaspace Radon')
 config.font_size = 12
 config.adjust_window_size_when_changing_font_size = true
@@ -85,6 +86,11 @@ config.default_prog = {
 -- hack to always have only 1 tab whatsoever
 config.prefer_to_spawn_tabs = true
 config.enable_tab_bar = false
+
+-- cli escape sequence artifacts 
+-- config.term = "tmux-256color"
+config.term = "xterm-256color"
+-- config.term = "wezterm"
 
 -- done building config!
 return config

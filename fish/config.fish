@@ -99,7 +99,7 @@ if status is-interactive
     set --export JAVA_HOME (dirname (dirname (readlink -f (which java))))
     set -gx PATH "$JAVA_HOME/bin:$PATH"
     set -gx PATH "/home/sergey/hive/bin:$PATH"
-    # set -Ux LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/home/sergey/anaconda3/lib/
+    set -Ux LD_LIBRARY_PATH /usr/lib/x86_64-linux-gnu:/home/sergey/anaconda3/lib/
     set -gx PATH "/usr/local/cuda/bin:$PATH"
     set -gx CUDA_HOME "/usr/local/cuda"
     # set --export PATH "$JAVA_HOME/bin:$PATH"
@@ -163,9 +163,20 @@ if status is-interactive
     #------------------------------------------------------------------------------#
     #                                     asdf                                     #
     #------------------------------------------------------------------------------#
-    source ~/.asdf/asdf.fish
 
+    # ASDF configuration code
+    if test -z $ASDF_DATA_DIR
+        set _asdf_shims "$HOME/.asdf/shims"
+    else
+        set _asdf_shims "$ASDF_DATA_DIR/shims"
+    end
 
+    # Do not use fish_add_path (added in Fish 3.2) because it
+    # potentially changes the order of items in PATH
+    if not contains $_asdf_shims $PATH
+        set -gx --prepend PATH $_asdf_shims
+    end
+    set --erase _asdf_shims
     #------------------------------------------------------------------------------#
     #                                     yazi                                     #
     #------------------------------------------------------------------------------#
@@ -202,9 +213,13 @@ if status is-interactive
     # end
     # <<< conda initialize <<<
     if test -f ~/anaconda3/bin/conda
-      source ~/anaconda3/etc/fish/conf.d/conda.fish
       set -gx PATH "$PATH:/home/sergey/anaconda3/bin"
       export PYTHON_NAME="base"
+      export CONDA_PREFIX="/home/sergey/anaconda3"
+      export CONDA_EXE="/home/sergey/anaconda3/bin/conda"
+      export CONDA_SHLVL="1"
+      export CONDA_PYTHON_EXE="/home/sergey/anaconda3/bin/python"
+      source ~/anaconda3/etc/fish/conf.d/conda.fish
     end
 
 
@@ -233,6 +248,7 @@ if status is-interactive
     #                                   starship                                   #
     #------------------------------------------------------------------------------#
     starship init fish | source
+    export TERM="tmux-256color"
 
 
     #------------------------------------------------------------------------------#
@@ -246,7 +262,12 @@ if status is-interactive
     #                                   coursier                                   #
     #------------------------------------------------------------------------------#
     eval "$(cs java --jvm temurin:1.17 --env)"
+    # set -gx PATH "/home/sergey/scala-runners-main:$PATH"
 
+    #------------------------------------------------------------------------------#
+    #                                   clipboard                                  #
+    #------------------------------------------------------------------------------#
+     alias clip "xsel -ib"
 
 end
 

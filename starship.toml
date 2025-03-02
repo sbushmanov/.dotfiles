@@ -1,15 +1,25 @@
 [nodejs]
 disabled = true
 
+[lua]
+# disabled = true
+
 [python]
 symbol = " "
 disabled = true
 
 [scala]
 symbol = " "
-# disabled = true
+disabled = true
 
 [java]
 symbol = "󰬷 "
 # disabled = true
 # detect_files = 'pom.xml'
+
+[character] # The name of the module we are configuring is 'character'
+# success_symbol = '[➜](bold green)'
+# disabled = true
+
+[line_break]
+# disabled = true

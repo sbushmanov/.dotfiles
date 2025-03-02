@@ -35,7 +35,7 @@ vim.g.loaded_ruby_provider = 0
 vim.keymap.set("", "<Space>", "<Nop>", { noremap = true, silent = true })
 g.mapleader         = " "
 g.maplocalleader    = ";"
-g.python3_host_prog = "/home/sergey/anaconda3/bin/python3"
+g.python3_host_prog = "/home/sergey/anaconda3/bin/python"
 -- g.pf_autorun_delay = 0.5
 
 opt.termguicolors   = true         -- Enable colors in terminal

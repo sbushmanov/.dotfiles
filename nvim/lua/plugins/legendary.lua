@@ -24,7 +24,7 @@ return {
           "<A-c>",
           mode = { 'v' },
           ":CodyTask<CR>",
-          desc = "Cody task on selection (sourcegraph)",
+          desc = "Cody task on selection (sourcegraph AI)",
         },
         {
           "<A-u>",
@@ -398,10 +398,19 @@ return {
           description = "Metals go to implementation"
         },
         {
-          "K",
+          "<C-k>",
           function()
             require('lsp_signature').toggle_float_win()
           end,
+          mode = { 'n', 'v'},
+          description = "Toggle function signature"
+        },
+        {
+          "<leader>k",
+          function()
+            require('lsp_signature').toggle_float_win()
+          end,
+          mode = { 'n', 'v'},
           description = "Toggle function signature"
         },
         {
