@@ -1,4 +1,6 @@
 return {
   'junegunn/fzf',
-  build = "./install --bin"
+  build = function()
+    vim.fn["fzf#install"]()
+  end,
 }
