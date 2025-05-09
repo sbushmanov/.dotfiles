@@ -1,0 +1,35 @@
+[
+  {
+    "label": "run main with bloop",
+    "name": "run-main",
+    "command": "./.run-bloop-main.sh $ZED_WORKTREE_ROOT $ZED_FILE $ZED_SYMBOL",
+    "working_directory": "current_project_directory",
+    "use_new_terminal": false,
+    "shell": {
+      "program": "/usr/bin/fish"
+    },
+    "environment": {
+      "PATH": "$env.PATH"
+    },
+    "tags": [
+      "scala-main"
+    ]
+  },
+  {
+    "label": "run tests with bloop",
+    "name": "run-bloop-test",
+    "command": "./.run-bloop-tests.sh $ZED_WORKTREE_ROOT $ZED_FILE $ZED_SYMBOL",
+    "working_directory": "current_project_directory",
+    "use_new_terminal": false,
+    "shell": {
+      "program": "/usr/bin/fish"
+    },
+    "environment": {
+      "PATH": "$env.PATH"
+    },
+    "keystroke": "ctrl-shift-r",
+    "tags": [
+      "scala-test"
+    ]
+  }
+]
