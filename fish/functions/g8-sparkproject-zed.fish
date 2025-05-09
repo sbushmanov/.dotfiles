@@ -1,5 +1,5 @@
-function g8-scala3-zed
-    set -l template_path "file:///home/sergey/scala3.g8"
+function g8-sparkproject-zed
+    set -l template_path "file:///home/sergey/spark-project.g8"
     set -l project_name ""
     set -l processed_args
 

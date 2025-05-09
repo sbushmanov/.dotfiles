@@ -22,11 +22,6 @@ if status is-interactive
     #                                  set alaises                                 #
     #------------------------------------------------------------------------------#
     alias v nvim
-    alias vh v_jumper_files_exact
-    alias vi v_jumper_files_abstract
-    alias vf v_jumper_files_abstract
-    # alias vf 'fzf --tmux 85% --preview "bat --color always {}"  --exit-0 | xargs -r nvim || true'
-    # alias fn 'n (fzf --tmux 85% --walker="dir,hidden" --preview "exa -la {}"); printf "%.0s\n" (seq 1 100); commandline -f repaint'
     alias ll 'eza -la --icons --git -a'
     alias lt 'eza --tree --level=2 --icons --git -a'
     alias ls lsd
@@ -37,6 +32,16 @@ if status is-interactive
     alias hs "hishtory tquery"
     # set -gx TERMINAL alacritty
     # alias gogh 'bash -c "$(curl -sLo- https://git.io/vQgMr)"'
+
+
+    #------------------------------------------------------------------------------#
+    #                            exact                                             #
+    #------------------------------------------------------------------------------#
+    alias vh v_jumper_files_exact
+    alias vi v_jumper_files_abstract
+    alias vf v_jumper_files_abstract
+    # alias vf 'fzf --tmux 85% --preview "bat --color always {}"  --exit-0 | xargs -r nvim || true'
+    # alias fn 'n (fzf --tmux 85% --walker="dir,hidden" --preview "exa -la {}"); printf "%.0s\n" (seq 1 100); commandline -f repaint'
 
 
     #------------------------------------------------------------------------------#
