@@ -22,6 +22,7 @@ if status is-interactive
     #                                  set alaises                                 #
     #------------------------------------------------------------------------------#
     alias v nvim
+    alias R 'R --no-save'
     alias ll 'eza -la --icons --git -a'
     alias lt 'eza --tree --level=2 --icons --git -a'
     alias ls lsd
@@ -47,7 +48,7 @@ if status is-interactive
     #------------------------------------------------------------------------------#
     #                            abstract and update db                            #
     #------------------------------------------------------------------------------#
-    bind \ce 'v_jumper_files_abstract; printf "%.0s\n" (seq 1 100); commandline -f repaint'
+    bind \cx 'v_jumper_files_abstract; printf "%.0s\n" (seq 1 100); commandline -f repaint'
     bind \cc 'cd_jumper_directories_abstract; printf "%.0s\n" (seq 1 100); commandline -f repaint'
     bind \cn 'nnn_jumper_directories_abstract; printf "%.0s\n" (seq 1 100); commandline -f repaint'
 
