@@ -17,15 +17,20 @@ if status is-interactive
     # put prompt at the bottom
     printf '%.0s\n' (seq 1 100)
 
+    #------------------------------------------------------------------------------#
+    #                                     hyperlinks                               #
+    #------------------------------------------------------------------------------#
+    # alias ll 'eza -la --icons --git -a'
+    # alias lt 'eza --tree --level=2 --icons --git -a'
+    # alias ls lsd
+    alias ls 'lsd --hyperlink always --color=auto --group-directories-first'
+    
     
     #------------------------------------------------------------------------------#
     #                                  set alaises                                 #
     #------------------------------------------------------------------------------#
     alias v nvim
     alias R 'R --no-save'
-    alias ll 'eza -la --icons --git -a'
-    alias lt 'eza --tree --level=2 --icons --git -a'
-    alias ls lsd
     alias rmd 'rm -rf -- "$(pwd -P)" && cd ..'
     alias gore2 yaegi
     alias d trash
@@ -150,8 +155,12 @@ if status is-interactive
     #                                    hadoop                                    #
     #------------------------------------------------------------------------------#
     #export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
-    set -gx PATH "$PATH:/home/sergey/hadoop/bin"
-
+    set -gx HADOOP_HOME /home/sergey/hadoop
+    set -gx PATH $HADOOP_HOME/bin $PATH
+    set -gx HIVE_HOME /home/sergey/hive
+    set -gx HIVE_CONF_DIR $HIVE_HOME/bin
+    set -gx PATH $HIVE_HOME/bin $PATH
+    set -gx LD_LIBRARY_PATH $HADOOP_HOME/lib/native $LD_LIBRARY_PATH
     
     #------------------------------------------------------------------------------#
     #                                      nnn                                     #
@@ -280,8 +289,8 @@ end
 set fish_greeting
 
 # >>> JVM installed by coursier >>>
-set -gx JAVA_HOME "/home/sergey/.cache/coursier/arc/https/github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.13%252B11/OpenJDK17U-jdk_x64_linux_hotspot_17.0.13_11.tar.gz/jdk-17.0.13+11"
-set -gx PATH "$PATH:/home/sergey/.cache/coursier/arc/https/github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.13%252B11/OpenJDK17U-jdk_x64_linux_hotspot_17.0.13_11.tar.gz/jdk-17.0.13+11/bin"
+set -Ux JAVA_HOME (dirname (dirname (realpath (which java))))
+set -Ua fish_user_paths $JAVA_HOME/bin
 # <<< JVM installed by coursier <<<
 
 # Hishtory Config:

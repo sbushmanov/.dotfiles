@@ -1,8 +1,9 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export JAVA_HOME:/home/sergey/\x2ecache/coursier/arc/https/github\x2ecom/adoptium/temurin17\x2dbinaries/releases/download/jdk\x2d17\x2e0\x2e15\x25252B6/OpenJDK17U\x2djdk_x64_linux_hotspot_17\x2e0\x2e15_6\x2etar\x2egz/jdk\x2d17\x2e0\x2e15\x2b6
 SETUVAR --export --path LD_LIBRARY_PATH:/usr/lib/x86_64\x2dlinux\x2dgnu\x1e/home/sergey/anaconda3/lib/
 SETUVAR VIRTUAL_ENV_DISABLE_PROMPT:true
-SETUVAR __fish_initialized:3400
+SETUVAR __fish_initialized:3800
 SETUVAR _fisher_catppuccin_2F_fish_files:\x7e/\x2econfig/fish/themes/Catppuccin\x20Frappe\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Latte\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Macchiato\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Mocha\x2etheme
 SETUVAR _fisher_edc_2F_bass_files:\x7e/\x2econfig/fish/functions/__bass\x2epy\x1e\x7e/\x2econfig/fish/functions/bass\x2efish
 SETUVAR _fisher_jgantunes_2F_fish_2D_gvm_files:\x7e/\x2econfig/fish/functions/gvm\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/gvm\x2efish
@@ -52,4 +53,4 @@ SETUVAR fish_pager_color_selected_background:\x1d
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/home/sergey/\x2elocal/share/coursier/bin\x1e/home/sergey/\x2efzf/bin
+SETUVAR fish_user_paths:/home/sergey/\x2elocal/share/coursier/bin\x1e/home/sergey/\x2efzf/bin\x1e/home/sergey/\x2ecache/coursier/arc/https/github\x2ecom/adoptium/temurin17\x2dbinaries/releases/download/jdk\x2d17\x2e0\x2e15\x25252B6/OpenJDK17U\x2djdk_x64_linux_hotspot_17\x2e0\x2e15_6\x2etar\x2egz/jdk\x2d17\x2e0\x2e15\x2b6/bin\x1e/usr/lib/jvm/java\x2d11\x2dgraalvm/bin
