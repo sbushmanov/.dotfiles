@@ -20,8 +20,8 @@ if status is-interactive
     #------------------------------------------------------------------------------#
     #                                     hyperlinks                               #
     #------------------------------------------------------------------------------#
-    # alias ll 'eza -la --icons --git -a'
-    # alias lt 'eza --tree --level=2 --icons --git -a'
+    alias ll 'eza -la --hyperlink --icons --git -a'
+    alias lt 'eza --tree --hyperlink --level=2 --icons --git -a'
     # alias ls lsd
     alias ls 'lsd --hyperlink always --color=auto --group-directories-first'
     
@@ -29,6 +29,7 @@ if status is-interactive
     #------------------------------------------------------------------------------#
     #                                  set alaises                                 #
     #------------------------------------------------------------------------------#
+    alias ai aichat
     alias v nvim
     alias R 'R --no-save'
     alias rmd 'rm -rf -- "$(pwd -P)" && cd ..'
