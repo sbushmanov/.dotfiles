@@ -35,16 +35,22 @@ function g8-scala3-zed
         end
         if test -d "$project_name"
             cd $project_name
-            # Rename src/main/scala directory to package_name if needed
+        # Rename src/main/scala directory to package_name if needed
             if test -d "src/main/scala/$project_name" -o -d "src/main/scala/$actual_dir"
                 if test -d "src/main/scala/$project_name"
-                    mv "src/main/scala/$project_name" "src/main/scala/$package_name"
+                    if test "$project_name" != "$package_name"
+                        mv "src/main/scala/$project_name" "src/main/scala/$package_name"
+                    end
                 else if test -d "src/main/scala/$actual_dir"
-                    mv "src/main/scala/$actual_dir" "src/main/scala/$package_name"
+                    if test "$actual_dir" != "$package_name"
+                        mv "src/main/scala/$actual_dir" "src/main/scala/$package_name"
+                    end
                 end
-                # Update package names in Scala files
-                find src/main/scala -type f -name "*.scala" -exec sed -i "s/package $project_name/package $package_name/g" {} +
-                find src/main/scala -type f -name "*.scala" -exec sed -i "s/package $actual_dir/package $package_name/g" {} +
+
+                if test "$project_name" != "$package_name"
+                    find src/main/scala -type f -name "*.scala" -exec sed -i "s/package $project_name/package $package_name/g" {} +
+                    find src/main/scala -type f -name "*.scala" -exec sed -i "s/package $actual_dir/package $package_name/g" {} +
+                end
             end
             zed .
         else

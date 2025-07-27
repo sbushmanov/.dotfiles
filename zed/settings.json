@@ -15,23 +15,41 @@
     "metals": {
       "settings": {
         "inlayHints": {
-          "inferredTypes": {
-            "enable": true
-          },
-          "implicitArguments": {
-            "enable": true
-          },
-          "implicitConversions": {
-            "enable": true
-          },
-          "typeParameters": {
-            "enable": true
-          },
-          "hintsInPatternMatch": {
-            "enable": true
-          }
+          "inferredTypes": { "enable": true },
+          "implicitArguments": { "enable": true },
+          "implicitConversions": { "enable": true },
+          "typeParameters": { "enable": true },
+          "hintsInPatternMatch": { "enable": true }
         }
       }
+    },
+    "typos": {
+      "initialization_options": {
+        // Path to your typos config file, .typos.toml by default.
+        "config": "/home/sergey/.config/typos/.typos.toml",
+        // Path to your typos-lsp executable, takes $PATH into account.
+        "path": "typos-lsp",
+        // Diagnostic severity within Zed. "Error" by default, can be:
+        // "Error", "Hint", "Information", "Warning"
+        "diagnosticSeverity": "Error",
+        // Minimum logging level for the LSP, displayed in Zed's logs. "info" by default, can be:
+        // "debug", "error", "info", "off", "trace", "warn"
+        "logLevel": "warn",
+        // Traces the communication between ZED and the language server. Recommended for debugging only. "off" by default, can be:
+        // "messages", "off", "verbose"
+        "trace.server": "off"
+      }
+    }
+  },
+  "languages": {
+    "Scala": {
+      "language_servers": ["metals", "typos", "..."]
+    },
+    "Markdown": {
+      "language_servers": ["typos"]
+    },
+    "Plain Text": {
+      "language_servers": ["typos"]
     }
   },
   "auto_update": false,
@@ -45,7 +63,7 @@
     "default_model": {
       "provider": "openai",
       "model": "gpt-4.1-mini"
-    },
+    }
   },
   "edit_predictions": {
     "mode": "subtle",
