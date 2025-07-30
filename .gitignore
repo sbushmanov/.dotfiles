@@ -22,6 +22,8 @@
 !/zed/**
 !.stowrc
 !starship.toml
+!/codebook/
+!/typos/
 
 
 # Bash stuff (profile just sources bashrc, since it's the only thing sourced

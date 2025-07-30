@@ -17,4 +17,5 @@ require("defaults")
 require("keymaps")
 require("lazy").setup("plugins")
 
+vim.deprecate = function() end
 vim.opt.rtp:append("/home/sergey/.fzf")
