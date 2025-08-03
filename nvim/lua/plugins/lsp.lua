@@ -8,8 +8,9 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"jay-babu/mason-nvim-dap.nvim", -- for debug adapters
 			"mfussenegger/nvim-dap",
-			"hrsh7th/cmp-nvim-lsp",
+			-- "hrsh7th/cmp-nvim-lsp",
 			"nvimdev/lspsaga.nvim",
+			"saghen/blink.cmp",
 		},
 		config = function()
 			require("lazydev").setup({})
@@ -22,15 +23,16 @@ return {
 			end
 
 			-- Capabilities for completion
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities.textDocument.completion.completionItem.snippetSupport = true
-			local cmp_lsp = require("cmp_nvim_lsp")
-			local cmp_capabilities = cmp_lsp.default_capabilities(capabilities)
+			-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+			-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+			-- local cmp_lsp = require("cmp_nvim_lsp")
+			-- local cmp_capabilities = cmp_lsp.default_capabilities(capabilities)
 			-- enable folding
-			cmp_capabilities.textDocument.foldingRange = {
-				dynamicRegistration = false,
-				lineFoldingOnly = true,
-			}
+			-- cmp_capabilities.textDocument.foldingRange = {
+			-- 	dynamicRegistration = false,
+			-- 	lineFoldingOnly = true,
+			-- }
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 			-- Mason setup
 			require("mason").setup()
@@ -60,6 +62,7 @@ return {
 
 			-- Load lspconfig
 			local lspconfig = require("lspconfig")
+			lspconfig.lua_ls.setup({ capabilities = capabilities })
 
 			-- Setup servers
 			local default_on_attach = function(client, bufnr)
@@ -129,7 +132,7 @@ return {
 
 			for server, opts in pairs(servers) do
 				opts.on_attach = default_on_attach
-				opts.capabilities = cmp_capabilities
+				-- opts.capabilities = cmp_capabilities
 				lspconfig[server].setup(opts)
 			end
 		end,
