@@ -137,58 +137,58 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 	end,
 })
 
--- folding without ufo folding
-opt.foldenable = true
-opt.foldlevel = 99
-opt.foldmethod = "expr"
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-opt.foldtext = ""
-opt.foldcolumn = "0"
-opt.fillchars:append({ fold = " " })
+-- START folding without ufo folding
+-- opt.foldenable = true
+-- opt.foldlevel = 99
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- opt.foldtext = ""
+-- opt.foldcolumn = "0"
+-- opt.fillchars:append({ fold = " " })
+--
+-- vim.keymap.set("n", "zR", ":set foldlevel=99<CR>")
+-- vim.keymap.set("n", "zM", ":set foldlevel=0<CR>")
+--
+-- local function fold_virt_text(result, s, lnum, coloff)
+-- 	if not coloff then
+-- 		coloff = 0
+-- 	end
+-- 	local text = ""
+-- 	local hl
+-- 	for i = 1, #s do
+-- 		local char = s:sub(i, i)
+-- 		local hls = vim.treesitter.get_captures_at_pos(0, lnum, coloff + i - 1)
+-- 		local _hl = hls[#hls]
+-- 		if _hl then
+-- 			local new_hl = "@" .. _hl.capture
+-- 			if new_hl ~= hl then
+-- 				table.insert(result, { text, hl })
+-- 				text = ""
+-- 				hl = nil
+-- 			end
+-- 			text = text .. char
+-- 			hl = new_hl
+-- 		else
+-- 			text = text .. char
+-- 		end
+-- 	end
+-- 	table.insert(result, { text, hl })
+-- end
+--
+-- function _G.custom_foldtext()
+-- 	local start = vim.fn.getline(vim.v.foldstart):gsub("\t", string.rep(" ", vim.o.tabstop))
+-- 	local end_str = vim.fn.getline(vim.v.foldend)
+-- 	local end_ = vim.trim(end_str)
+-- 	local result = {}
+-- 	fold_virt_text(result, start, vim.v.foldstart - 1)
+-- 	table.insert(result, { " ... ", "Delimiter" })
+-- 	fold_virt_text(result, end_, vim.v.foldend - 1, #(end_str:match("^(%s+)") or ""))
+-- 	return result
+-- end
+--
+-- vim.opt.foldtext = "v:lua.custom_foldtext()"
 
-vim.keymap.set("n", "zR", ":set foldlevel=99<CR>")
-vim.keymap.set("n", "zM", ":set foldlevel=0<CR>")
-
-local function fold_virt_text(result, s, lnum, coloff)
-	if not coloff then
-		coloff = 0
-	end
-	local text = ""
-	local hl
-	for i = 1, #s do
-		local char = s:sub(i, i)
-		local hls = vim.treesitter.get_captures_at_pos(0, lnum, coloff + i - 1)
-		local _hl = hls[#hls]
-		if _hl then
-			local new_hl = "@" .. _hl.capture
-			if new_hl ~= hl then
-				table.insert(result, { text, hl })
-				text = ""
-				hl = nil
-			end
-			text = text .. char
-			hl = new_hl
-		else
-			text = text .. char
-		end
-	end
-	table.insert(result, { text, hl })
-end
-
-function _G.custom_foldtext()
-	local start = vim.fn.getline(vim.v.foldstart):gsub("\t", string.rep(" ", vim.o.tabstop))
-	local end_str = vim.fn.getline(vim.v.foldend)
-	local end_ = vim.trim(end_str)
-	local result = {}
-	fold_virt_text(result, start, vim.v.foldstart - 1)
-	table.insert(result, { " ... ", "Delimiter" })
-	fold_virt_text(result, end_, vim.v.foldend - 1, #(end_str:match("^(%s+)") or ""))
-	return result
-end
-
-vim.opt.foldtext = "v:lua.custom_foldtext()"
-
---------------------------------------------
+-- END folding------------------------------------------
 
 vim.api.nvim_set_hl(0, "VimwikiHeader1", { bold = true, ctermfg = 0, fg = "#ef476f" })
 vim.api.nvim_set_hl(0, "VimwikiHeader2", { bold = true, ctermfg = 0, fg = "#ffd166" })

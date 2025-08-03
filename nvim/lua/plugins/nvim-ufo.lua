@@ -3,6 +3,7 @@ return {
 	{
 		"kevinhwang91/nvim-ufo",
 		lazy = false,
+		-- event = "LspAttach",
 		dependencies = {
 			"kevinhwang91/promise-async",
 			{
