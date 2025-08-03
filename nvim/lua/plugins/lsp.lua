@@ -1,7 +1,6 @@
 return {
   {
     "neovim/nvim-lspconfig",
-    event = "VimEnter",
     ft = { "python", "go", "lua", "bash", "json", "yaml", "rust", "awk" },
     cmd = { "LspInfo", "LspInstall", "LspStart" },
     dependencies = {
@@ -11,43 +10,52 @@ return {
       "mfussenegger/nvim-dap",
       "hrsh7th/cmp-nvim-lsp",
       "nvimdev/lspsaga.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim", -- added mason-tool-installer
+      "williamboman/mason-tool-installer.nvim", -- added mason-tool-installer
     },
     config = function()
       require("lazydev").setup({})
-
-      -- Diagnostic signs & config (early, before any LSP)
-      local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-      for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+      local function client_supports_method(client, method, bufnr)
+        if vim.fn.has("nvim-0.11") == 1 then
+          return client:supports_method(method, bufnr)
+        else
+          return client.supports_method(method, { bufnr = bufnr })
+        end
       end
-
+      event = { "VimEnter" }
+      -- Diagnostic signs & config (early, before any LSP)
+      -- Diagnostic signs
       vim.diagnostic.config({
         severity_sort = true,
         float = { border = "rounded", source = "if_many" },
         underline = { severity = vim.diagnostic.severity.ERROR },
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = " ",
+            [vim.diagnostic.severity.WARN] = " ",
+            [vim.diagnostic.severity.INFO] = " ",
+            [vim.diagnostic.severity.HINT] = "󰠠 ",
+          },
+        },
         virtual_text = {
           source = "if_many",
           spacing = 2,
           format = function(diagnostic)
-            return diagnostic.message
+            local diagnostic_message = {
+              [vim.diagnostic.severity.ERROR] = diagnostic.message,
+              [vim.diagnostic.severity.WARN] = diagnostic.message,
+              [vim.diagnostic.severity.INFO] = diagnostic.message,
+              [vim.diagnostic.severity.HINT] = diagnostic.message,
+            }
+            return diagnostic_message[diagnostic.severity]
           end,
         },
       })
 
       -- Capabilities for LSP completion & folding
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.textDocument.completion.completionItem.snippetSupport = true
-      capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-      }
-      capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
       -- Mason setups
       require("mason").setup()
-
       require("mason-nvim-dap").setup({
         ensure_installed = { "debugpy" },
         automatic_installation = true,
@@ -99,14 +107,6 @@ return {
           local map = function(keys, func, desc, mode)
             mode = mode or "n"
             vim.keymap.set(mode, keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
-          end
-
-          local function client_supports_method(client, method, bufnr)
-            if vim.fn.has("nvim-0.11") == 1 then
-              return client:supports_method(method, bufnr)
-            else
-              return client.supports_method(method, { bufnr = bufnr })
-            end
           end
 
           map("gd", vim.lsp.buf.definition, "Go to Definition")
@@ -206,8 +206,20 @@ return {
       }
 
       -- Mason-lspconfig handler-based setup
+
       require("mason-lspconfig").setup({
-        ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
+        ensure_installed = {
+          "pyright",
+          "bashls",
+          "lua_ls",
+          "gopls",
+          "jsonls",
+          "awk_ls",
+          "yamlls",
+          "ruff",
+          "rust_analyzer",
+          "typos_lsp",
+        },
         automatic_installation = true,
         handlers = {
           function(server_name)
