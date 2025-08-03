@@ -27,18 +27,15 @@ return {
 	}, -- load on command or keys
 	{
 		"homerours/jumper.nvim",
-		keys = { "<leader>jf", "<leader>jd", "<leader>jj" },
 		event = "VeryLazy",
 	}, -- lazy load jumper on keys
 	{
 		"nvim-telescope/telescope.nvim",
 		cmd = "Telescope",
-		keys = { "<leader>f", "<leader>t", "<leader>g", "<leader>c" },
 	}, -- load on common telescope commands and keys
 	{
 		"ibhagwan/fzf-lua",
 		cmd = { "FzfLua" },
-		keys = { "<leader>f", "<leader>t" },
 		lazy = true,
 	}, -- lazy load fzf lua
 	{
