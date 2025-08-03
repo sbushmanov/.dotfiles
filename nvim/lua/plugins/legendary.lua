@@ -37,6 +37,12 @@ return {
 					mode = { "n" },
 					description = "Enable ufo folding plugin",
 				},
+				{
+					"<leader>D",
+					":lua Snacks.dashboard()<CR>",
+					mode = { "n" },
+					description = "Display Snacks dashboar",
+				},
 				-- {
 				--   "<leader>t",
 				--   "<cmd>NnnExplorer<CR>",

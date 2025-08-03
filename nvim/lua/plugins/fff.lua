@@ -1,11 +1,6 @@
 return {
 	"dmtrKovalenko/fff.nvim",
 	build = "RUSTUP_TOOLCHAIN=nightly cargo build --release",
-	-- or if you are using nixos
-	-- build = "nix run .#release",
-	-- opts = {
-	-- 	-- pass here all the options
-	-- },
 	keys = {
 		{
 			"F", -- try it if you didn't it is a banger keybinding for a picker
@@ -18,7 +13,7 @@ return {
 	config = function()
 		require("fff").setup({
 			-- UI dimensions and appearance
-			width = 0.8, -- Window width as fraction of screen
+			width = 0.9, -- Window width as fraction of screen
 			height = 0.8, -- Window height as fraction of screen
 			prompt = "🪿 ", -- Input prompt symbol
 			preview = {
