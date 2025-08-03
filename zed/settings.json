@@ -39,7 +39,8 @@
         // "messages", "off", "verbose"
         "trace.server": "off"
       }
-    }
+    },
+    "sqls": {}
   },
   "languages": {
     "Scala": {
@@ -50,6 +51,14 @@
     },
     "Plain Text": {
       "language_servers": ["typos"]
+    },
+    "SQL": {
+      "formatter": {
+        "external": {
+          "command": "sql-formatter",
+          "arguments": ["--language", "mysql"]
+        }
+      }
     }
   },
   "auto_update": false,
