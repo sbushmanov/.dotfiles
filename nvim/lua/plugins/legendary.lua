@@ -104,7 +104,7 @@ return {
 					"<A-s>",
 					"<cmd>vs<CR>",
 					mode = { "n" },
-					description = "Vertical split",
+					description = "Vertical split [Oil]",
 				},
 				{
 					"<A-t>",
