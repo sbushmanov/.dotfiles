@@ -14,7 +14,7 @@ return {
 	},
 	{ "tpope/vim-markdown", ft = "markdown" }, -- only load on markdown files
 	{ "mattn/calendar-vim", cmd = "Calendar" }, -- load on calendar command
-	{ "junegunn/vim-easy-align", cmd = "EasyAlign" }, -- load only on command
+	{ "junegunn/vim-easy-align" }, -- load only on command
 	{
 		"numToStr/Comment.nvim",
 		keys = { "gcc", "gbc" },

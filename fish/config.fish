@@ -24,6 +24,14 @@ if status is-interactive
     alias lt 'eza --tree --hyperlink --level=2 --icons --git -a'
     # alias ls lsd
     alias ls 'lsd --hyperlink always --color=auto --group-directories-first'
+
+    #------------------------------------------------------------------------------#
+    #                                  nvim experiments                            #
+    #------------------------------------------------------------------------------#
+    export NVIM_KICKSTART="$HOME/.config/nvim-kickstart"
+    alias k "XDG_DATA_HOME=$NVIM_KICKSTART/share XDG_CACHE_HOME=$NVIM_KICKSTART XDG_CONFIG_HOME=$NVIM_KICKSTART nvim"
+    export NVIM_GERMAN="$HOME/.config/nvim-german"
+    alias g "XDG_DATA_HOME=$NVIM_GERMAN/share XDG_CACHE_HOME=$NVIM_GERMAN XDG_CONFIG_HOME=$NVIM_GERMAN nvim"
     
     
     #------------------------------------------------------------------------------#

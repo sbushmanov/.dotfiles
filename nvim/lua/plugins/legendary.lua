@@ -43,12 +43,12 @@ return {
 					mode = { "n" },
 					description = "Display Snacks dashboard",
 				},
-				-- {
-				--   "<leader>t",
-				--   "<cmd>NnnExplorer<CR>",
-				--   mode = { 'n' },
-				--   description = "Open NNN explorer side bar",
-				-- },
+				{
+					"<leader>E",
+					"<cmd>:NnnExplorer<CR>",
+					mode = { "n" },
+					description = "Open NNN explorer side bar",
+				},
 				{
 					"<C-s>",
 					"<cmd>FzfLua lgrep_curbuf<CR>",
