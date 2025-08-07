@@ -54,5 +54,6 @@ return {
 		telescope.load_extension("project")
 		telescope.load_extension("jumper")
 		telescope.load_extension("undo")
+		telescope.load_extension("fidget")
 	end,
 }

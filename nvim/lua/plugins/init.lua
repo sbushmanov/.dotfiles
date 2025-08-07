@@ -3,11 +3,6 @@ return {
 
 	{ "nvim-lua/plenary.nvim", lazy = true }, -- defer loading plenary, load on demand
 	{
-		"mfussenegger/nvim-dap",
-		lazy = true,
-		cmd = { "DapContinue", "DapToggleBreakpoint" },
-	},
-	{
 		"tpope/vim-unimpaired",
 		lazy = true,
 		event = "VeryLazy",
@@ -26,19 +21,6 @@ return {
 		keys = { "<leader>rs" },
 	}, -- load on command or keys
 	{
-		"homerours/jumper.nvim",
-		event = "VeryLazy",
-	}, -- lazy load jumper on keys
-	{
-		"nvim-telescope/telescope.nvim",
-		cmd = "Telescope",
-	}, -- load on common telescope commands and keys
-	{
-		"ibhagwan/fzf-lua",
-		cmd = { "FzfLua" },
-		lazy = true,
-	}, -- lazy load fzf lua
-	{
 		"lewis6991/gitsigns.nvim",
 		event = "BufReadPre",
 		lazy = true,
@@ -47,18 +29,6 @@ return {
 		"WhoIsSethDaniel/toggle-lsp-diagnostics.nvim",
 		cmd = "ToggleLspDiagnostics",
 		lazy = true,
-	},
-	{
-		"nvimtools/none-ls.nvim",
-		lazy = true,
-		event = "BufWritePre",
-	}, -- load on file save write for lint/format
-	{ "numToStr/Comment.nvim", event = "VeryLazy" },
-	{ "sourcegraph/sg.nvim", event = "VeryLazy" },
-	{
-		"neovim/nvim-lspconfig",
-		ft = { "python", "go", "lua", "bash", "json", "yaml", "rust", "awk" },
-		cmd = { "LspInfo", "LspInstall", "LspStart" },
 	},
 	-- add other plugins with appropriate lazy loading here
 }

@@ -1,25 +1,15 @@
 return {
-	"stevearc/oil.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
-	config = function()
-		local oil = require("oil")
-
-		oil.setup({
-			delete_to_trash = true,
-			keymaps = {
-				-- Inside Oil: search files in current dir with Telescope
-				["ff"] = {
-					function()
-						require("telescope.builtin").find_files({
-							cwd = oil.get_current_dir(),
-						})
-					end,
-					mode = "n",
-					desc = "Find files in the current Oil directory",
-				},
-				-- Inside Oil: vertical split
-				["<C-s>"] = "<cmd>vs<CR>",
-			},
-		})
-	end,
+    "stevearc/oil.nvim",
+    ---@module 'oil'
+    ---@type oil.SetupOpts
+    opts = {
+        view_options = {
+            show_hidden = true,
+        },
+    },
+    -- Optional dependencies
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
+    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+    -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+    lazy = false,
 }
