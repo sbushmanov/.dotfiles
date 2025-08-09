@@ -23,7 +23,7 @@ return {
 					{ "filename", path = 1 },
 				},
 				lualine_x = {
-					-- "g:metals_status",
+					"g:metals_status",
 					"encoding",
 					"filesize",
 					"filetype",

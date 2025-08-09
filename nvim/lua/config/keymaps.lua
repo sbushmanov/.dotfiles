@@ -1,4 +1,9 @@
-vim.keymap.set("n", "-", "<cmd>Oil --float<CR>", { desc = "Open Parent Directory in Oil" })
+local keymap = vim.keymap.set
+local default_opts = { noremap = true, silent = true }
+local expr_opts = { noremap = true, expr = true, silent = true }
+
+keymap("v", "<leader>ea", ":EasyAlign<CR>", default_opts)
+keymap("n", "-", "<cmd>Oil --float<CR>", { desc = "Open Parent Directory in Oil" })
 vim.keymap.set("n", "gl", function()
 	vim.diagnostic.open_float()
 end, { desc = "Open Diagnostics in Float" })

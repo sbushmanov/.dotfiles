@@ -1,14 +1,11 @@
 return {
 	"nvimdev/lspsaga.nvim",
-	lazy = "true",
+	lazy = true,
 	config = function()
 		require("lspsaga").setup({
 			ui = {
-				-- Currently, only the round theme exists
 				theme = "round",
-				-- This option only works in Neovim 0.9
 				title = true,
-				-- Border type can be single, double, rounded, solid, shadow.
 				border = "rounded",
 				winblend = 0,
 				expand = "",
@@ -21,6 +18,41 @@ return {
 				hover = " ",
 				kind = {},
 			},
+		})
+
+		-- === Cached winbar with filename fallback ===
+		local winbar_cache = ""
+
+		function _G.MyWinbar()
+			local ok, bar = pcall(function()
+				return require("lspsaga.symbol.winbar").get_bar()
+			end)
+			if ok and bar ~= "" and bar ~= nil then
+				winbar_cache = bar
+				return bar
+			end
+			-- fallback to cached breadcrumbs or just filename
+			return winbar_cache ~= "" and winbar_cache or "%t"
+		end
+
+		-- Set dynamic winbar using Lua function
+		vim.opt.winbar = "%!v:lua.MyWinbar()"
+
+		-- Autocmd to refresh cache when LSP updates
+		vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter", "CursorHold" }, {
+			callback = function()
+				-- If cache empty, prefill with filename instantly
+				if winbar_cache == "" then
+					winbar_cache = vim.fn.expand("%t")
+				end
+				-- Try to update with real breadcrumbs
+				local ok, bar = pcall(function()
+					return require("lspsaga.symbol.winbar").get_bar()
+				end)
+				if ok and bar ~= "" and bar ~= nil then
+					winbar_cache = bar
+				end
+			end,
 		})
 	end,
 	dependencies = {

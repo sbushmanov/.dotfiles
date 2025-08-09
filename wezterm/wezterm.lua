@@ -50,13 +50,11 @@ config.font_size = 12
 config.adjust_window_size_when_changing_font_size = true
 
 -- keys
-config.leader = { key = "w", mods = "CTRL", timeout_milliseconds = 2000 }
+-- config.leader = { key = "w", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = {
-	{ key = "'", mods = "CTRL", action = act.ClearScrollback("ScrollbackAndViewport") },
-	{ key = "h", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "v", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
-	{ key = "0", mods = "LEADER", action = act.ShowLauncher },
-	{ key = "o", mods = "LEADER", action = wezterm.action.EmitEvent("toggle-opacity") },
+	-- 	{ key = "'", mods = "CTRL", action = act.ClearScrollback("ScrollbackAndViewport") },
+	-- 	{ key = "0", mods = "LEADER", action = act.ShowLauncher },
+	-- 	{ key = "o", mods = "LEADER", action = wezterm.action.EmitEvent("toggle-opacity") },
 	{ key = "q", mods = "CTRL", action = wezterm.action.QuitApplication },
 }
 

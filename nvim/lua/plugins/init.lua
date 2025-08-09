@@ -1,6 +1,7 @@
 return {
 	-- { "danth/pathfinder.vim",    lazy = false },
 
+	-- { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
 	{ "nvim-lua/plenary.nvim", lazy = true }, -- defer loading plenary, load on demand
 	{
 		"tpope/vim-unimpaired",

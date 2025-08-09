@@ -90,7 +90,7 @@ return {
 				},
 				{
 					"<leader>ut",
-					"<cmd>lua require('undotree').toggle()<cr>",
+					":UndotreeToggle<cr>",
 					mode = { "n", "x", "o" },
 					description = "Undo tree toggle",
 				},
@@ -236,7 +236,7 @@ return {
 				{ "<C-f>", ":FzfLua oldfiles<cr>", description = "Fzf file history" },
 				{ "<leader>fv", ":FzfLua commands<cr>", description = "Fzf commands" },
 				{ "<leader>fc", ":FzfLua colorscheme<cr>", description = "fzf colorscheme" },
-				{ "<leader>dr", ":lua require('dap').repl.toggle()<cr>", description = "DAP repl" },
+				{ "<leader>dr", ":lua require('dap').repl.toggle({}, 'vsplit new')<cr>", description = "DAP repl" },
 				{ "<leader>db", ":lua require('dap').toggle_breakpoint()<cr>", description = "DAP continue" },
 				{ "<leader>dc", ":lua require('dap').continue()<cr>", description = "DAP continue" },
 				{ "<leader>dt", ":lua require('dapui').toggle(2)<cr>", description = "DAP continue" },
@@ -384,22 +384,6 @@ return {
 						require("telescope.builtin").lsp_implementations()
 					end,
 					description = "Metals go to implementation",
-				},
-				{
-					"<C-k>",
-					function()
-						require("lsp_signature").toggle_float_win()
-					end,
-					mode = { "n", "v" },
-					description = "Toggle function signature",
-				},
-				{
-					"<leader>k",
-					function()
-						require("lsp_signature").toggle_float_win()
-					end,
-					mode = { "n", "v" },
-					description = "Toggle function signature",
 				},
 				{
 					"H",
