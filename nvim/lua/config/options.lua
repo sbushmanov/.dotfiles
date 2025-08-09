@@ -27,6 +27,10 @@ end
 
 -- Access system clipboard
 local opt = vim.opt
+
+-- Avoid jumping on code actions
+opt.numberwidth = 6
+
 opt.clipboard = "unnamedplus"
 
 opt.expandtab = true -- Convert tabs to spaces
