@@ -28,6 +28,9 @@ end
 -- Access system clipboard
 local opt = vim.opt
 
+-- metals
+vim.opt_global.completeopt = { "menuone", "noinsert", "noselect" }
+
 -- Avoid jumping on code actions
 opt.numberwidth = 6
 

@@ -31,5 +31,6 @@ return {
 		cmd = "ToggleLspDiagnostics",
 		lazy = true,
 	},
+	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
 	-- add other plugins with appropriate lazy loading here
 }

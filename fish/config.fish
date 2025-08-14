@@ -26,21 +26,12 @@ if status is-interactive
     alias ls 'lsd --hyperlink always --color=auto --group-directories-first'
 
     #------------------------------------------------------------------------------#
-    #                                  nvim experiments                            #
-    #------------------------------------------------------------------------------#
-    export NVIM_KICKSTART="$HOME/.config/nvim-kickstart"
-    alias k "XDG_DATA_HOME=$NVIM_KICKSTART/share XDG_CACHE_HOME=$NVIM_KICKSTART XDG_CONFIG_HOME=$NVIM_KICKSTART nvim"
-    export NVIM_GERMAN="$HOME/.config/nvim-german"
-    alias g "XDG_DATA_HOME=$NVIM_GERMAN/share XDG_CACHE_HOME=$NVIM_GERMAN XDG_CONFIG_HOME=$NVIM_GERMAN nvim"
-    
-    
-    #------------------------------------------------------------------------------#
     #                                  set alaises                                 #
     #------------------------------------------------------------------------------#
     alias ai aichat
     alias v nvim
     alias R 'R --no-save'
-    alias rmd 'rm -rf -- "$(pwd -P)" && cd ..'
+    alias rmd 'gio trash -- "$(pwd -P)" && cd ..'
     alias gore2 yaegi
     alias d trash
     alias restore 'trash list | fzf --tmux 80% --multi | awk '{$1=$1;print}' | rev | cut -d ' ' -f1 | rev | xargs trashy restore --match=exact --force'

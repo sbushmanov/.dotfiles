@@ -7,4 +7,5 @@ export NNN_TMPFILE='/tmp/.lastd' # to always cd on quit
 export NNN_USE_EDITOR=1
 alias l "nn -e"
 alias n "nnn -e"
+alias g "nnn -G"
 set --export NNN_FIFO "/tmp/nnn.fifo"
