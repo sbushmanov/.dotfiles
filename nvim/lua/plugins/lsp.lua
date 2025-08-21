@@ -24,28 +24,47 @@ return {
 				end
 
 				-- Jump to the definition of the word under your cursor.
-				map("gd", function() require("snacks").picker.lsp_definitions() end, "[G]oto [D]efinition")
+				map("gd", function()
+					require("snacks").picker.lsp_definitions()
+				end, "[G]oto [D]efinition")
 
 				-- Find references for the word under your cursor.
-				map("gr", function() require("snacks").picker.lsp_references() end, "[G]oto [R]eferences")
+				map("gr", function()
+					require("snacks").picker.lsp_references()
+				end, "[G]oto [R]eferences")
 
 				-- Jump to the implementation of the word under your cursor.
-				map("gI", function() require("snacks").picker.lsp_implementations() end, "[G]oto [I]mplementation")
+				map("gI", function()
+					require("snacks").picker.lsp_implementations()
+				end, "[G]oto [I]mplementation")
 
 				-- Jump to the type of the word under your cursor.
-				map("<leader>D", function() require("snacks").picker.lsp_type_definitions() end, "Type [D]efinition")
+				map("<leader>D", function()
+					require("snacks").picker.lsp_type_definitions()
+				end, "Type [D]efinition")
 
 				-- Fuzzy find all the symbols in your current document.
-				map("<leader>ds", function() require("snacks").picker.lsp_symbols() end, "[D]ocument [S]ymbols")
+				map("<leader>ds", function()
+					require("snacks").picker.lsp_symbols()
+				end, "[D]ocument [S]ymbols")
 
 				-- Fuzzy find all the symbols in your current workspace.
-				map("<leader>ws", function() require("snacks").picker.lsp_workspace_symbols() end, "[W]orkspace [S]ymbols")
+				map("<leader>ws", function()
+					require("snacks").picker.lsp_workspace_symbols()
+				end, "[W]orkspace [S]ymbols")
 
 				-- Rename the variable under your cursor.
 				map("<leader>cr", vim.lsp.buf.rename, "[R]e[n]ame")
 
 				-- Execute a code action
-				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
+				map("<leader>ca", function()
+					require("actions-preview").code_actions()
+				end, "[C]ode [A]ction (code action preview)", { "n", "x" })
+
+				-- Execute a code action
+				map("<leader>p", function()
+					require("actions-preview").code_actions()
+				end, "[C]ode [A]ction (code action preview)", { "n", "x" })
 
 				-- Go to declaration
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -73,7 +92,14 @@ return {
 
 				-- Highlight references
 				local client = vim.lsp.get_client_by_id(event.data.client_id)
-				if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
+				if
+					client
+					and client_supports_method(
+						client,
+						vim.lsp.protocol.Methods.textDocument_documentHighlight,
+						event.buf
+					)
+				then
 					local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
 					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
 						buffer = event.buf,
@@ -97,7 +123,10 @@ return {
 				end
 
 				-- Inlay hints toggle
-				if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
+				if
+					client
+					and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf)
+				then
 					map("<leader>th", function()
 						vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
 					end, "[T]oggle Inlay [H]ints")
@@ -139,7 +168,7 @@ return {
 				settings = {
 					Lua = {
 						completion = {
-							callSnippet = 'Replace',
+							callSnippet = "Replace",
 						},
 						runtime = {
 							version = "LuaJIT",

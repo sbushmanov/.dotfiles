@@ -1,27 +1,9 @@
 return {
 	"aznhe21/actions-preview.nvim",
-	keys = {
-		{
-			"<leader>ca",
-			function()
-				require("actions-preview").code_actions()
-			end,
-			desc = "Code Actions Preview",
-			mode = { "n", "x" },
-		},
-	},
+	-- event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		require("actions-preview").setup({
-			-- Use default backend (no telescope dependency)
-			backend = { "default" },
-
-			-- Highlight groups
-			highlight_command = {
-				enable = true,
-			},
-
-			-- Telescope config (fallback if telescope is available)
-			telescope = vim.F.if_nil(pcall(require, "telescope"), {
+			telescope = {
 				sorting_strategy = "ascending",
 				layout_strategy = "vertical",
 				layout_config = {
@@ -33,7 +15,7 @@ return {
 						return max_lines - 12
 					end,
 				},
-			}, nil),
+			},
 		})
 	end,
 	enabled = true,
