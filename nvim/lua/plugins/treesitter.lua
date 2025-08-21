@@ -3,21 +3,21 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
 		-- { "nvim-treesitter/nvim-treesitter-textobjects", event = "InsertEnter" }, -- TS objects
-		{
-			"nushell/tree-sitter-nu",
-			config = function()
-				-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-				---@diagnostic disable-next-line: missing-fields
-				require("nvim-treesitter.configs").setup({
-					ensure_installed = {
-						"nu",
-					},
-					auto_install = true,
-					highlight = { enable = true },
-					indent = { enable = true },
-				})
-			end,
-		},
+		-- {
+		-- 	"nushell/tree-sitter-nu",
+		-- 	config = function()
+		-- 		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+		-- 		---@diagnostic disable-next-line: missing-fields
+		-- 		require("nvim-treesitter.configs").setup({
+		-- 			ensure_installed = {
+		-- 				"nu",
+		-- 			},
+		-- 			auto_install = true,
+		-- 			highlight = { enable = true },
+		-- 			indent = { enable = true },
+		-- 		})
+		-- 	end,
+		-- },
 		{
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			event = "BufRead",

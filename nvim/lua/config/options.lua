@@ -93,8 +93,7 @@ opt.foldtext = ""
 opt.foldcolumn = "0"
 opt.fillchars:append({ fold = " " })
 
-vim.keymap.set("n", "zR", ":set foldlevel=99<CR>")
-vim.keymap.set("n", "zM", ":set foldlevel=0<CR>")
+
 
 local function fold_virt_text(result, s, lnum, coloff)
 	if not coloff then
@@ -142,12 +141,10 @@ opt.updatetime = 100
 opt.hlsearch = true -- Set highlight on search
 opt.mouse = "a" -- Enable mouse mode
 opt.showmatch = true
-opt.lazyredraw = true
+opt.lazyredraw = false
 opt.inccommand = "nosplit"
 
-vim.diagnostic.config({
-	float = { border = "rounded" },
-})
+
 
 -- Highlight on yank
 vim.cmd([[

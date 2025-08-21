@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+# Open the selected directory or file in Zed editor
+if [ -d "$1" ] || [ -f "$1" ]; then
+    zed "$1" &
+fi
+
+# Prevent nnn from handling the keypress further
+exit 0

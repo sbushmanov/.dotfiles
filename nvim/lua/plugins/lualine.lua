@@ -4,7 +4,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 		-- "SmiteshP/nvim-navic"
 	},
-	event = "VeryLazy",
+	event = "UIEnter",
 	config = function()
 		-- local navic = require("nvim-navic")
 		require("lualine").setup({

@@ -67,6 +67,76 @@ return {
 		scroll = { enabled = true },
 		statuscolumn = { enabled = true },
 		words = { enabled = true },
+		explorer = {
+			enabled = true,
+			-- Optional: customize if desired
+			netrw = false, -- disable netrw if using snacks explorer
+			icons = {
+				directory = "",
+				file = "",
+				symlink = "",
+			},
+		},
+
+		-- 2. Enable Picker (you have extensive picker mappings)
+		picker = {
+			enabled = true,
+			-- Optional: customize layout
+			layout = {
+				width = 0.9,
+				height = 0.8,
+				border = "rounded",
+			},
+		},
+
+		-- 3. Enable Scope (useful for code navigation)
+		scope = {
+			enabled = true,
+			show_icons = true,
+			highlight_hovered = true,
+		},
+
+		-- 4. Enable Image support (your healthcheck shows good terminal support)
+		image = {
+			enabled = true,
+			-- Your terminal supports kitty protocol and wezterm
+			preferred_protocol = "wezterm", -- or "kitty"
+			fallback_protocol = "chafa",
+			inline_in_docs = true,
+			max_width = 80,
+			max_height = 40,
+		},
+
+		-- 5. Enable Terminal integration
+		terminal = {
+			enabled = true,
+			shell = "/usr/bin/fish", -- matches your current shell
+			direction = "horizontal", -- or "vertical", "float"
+			size = 15,
+		},
+
+		-- 6. Enable Debug utilities (you already use them in init)
+		debug = {
+			enabled = true,
+			inspect_depth = 5,
+		},
+
+		-- 7. Enable Zen mode (you have mappings for it)
+		zen = {
+			enabled = true,
+			width = 0.85,
+			height = 0.9,
+			twilight = true,
+		},
+
+		-- 8. Enable Git integration
+		git = {
+			enabled = true,
+			browse = {
+				remote = "origin",
+				action = "open", -- or "copy"
+			},
+		},
 	},
 	keys = {
 		-- Top Pickers & Explorer
@@ -120,13 +190,13 @@ return {
 			end,
 			desc = "Find Config File",
 		},
-		{
-			"<leader>fp",
-			function()
-				Snacks.picker.projects()
-			end,
-			desc = "Projects",
-		},
+		-- {
+		-- 	"<leader>fp",
+		-- 	function()
+		-- 		Snacks.picker.projects()
+		-- 	end,
+		-- 	desc = "Projects",
+		-- },
 		{
 			"<leader>fr",
 			function()

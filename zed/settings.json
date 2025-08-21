@@ -70,8 +70,8 @@
     },
     "model_parameters": [],
     "default_model": {
-      "provider": "openai",
-      "model": "gpt-4.1-mini"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
     }
   },
   "edit_predictions": {
