@@ -9,7 +9,7 @@ return {
 			opts = {},
 		},
 	},
-	ft = { "scala", "sbt", "java" },
+	ft = { "scala", "sbt", "java", "sc" },
 	config = function()
 		vim.opt_global.shortmess:remove("F")
 		vim.opt_global.shortmess:append("c")
@@ -37,8 +37,14 @@ return {
 		capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 		metals_config.capabilities = capabilities
 
+		-- In metals.lua, add to the on_attach function:
 		metals_config.on_attach = function(client, bufnr)
-			-- Your LSP mappings can go here if needed
+			-- Delay inlay hints for Metals to ensure settings are applied
+			vim.defer_fn(function()
+				if vim.lsp.inlay_hint and client.supports_method("textDocument/inlayHint") then
+					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+				end
+			end, 10000) -- 500ms delay
 		end
 
 		-- Autocmd to start Metals
@@ -53,7 +59,7 @@ return {
 		vim.api.nvim_create_autocmd("VimEnter", {
 			callback = function()
 				-- force Metals to start immediately
-				require("metals").initialize_or_attach(require("metals").bare_config())
+				require("metals").initialize_or_attach(metals_config)
 			end,
 		})
 	end,

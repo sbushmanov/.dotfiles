@@ -87,6 +87,21 @@ return {
 					description = "Metals menu",
 				},
 				{
+					"<leader>tt",
+					":lua require('metals').toggle_setting('showInferredType')<cr>",
+					description = "Metals show inferred types",
+				},
+				{
+					"<leader>tc",
+					":lua require('metals').toggle_setting('showImplicitConversionsAndClasses')<cr>",
+					description = "Metals show implicit conversions ans classes",
+				},
+				{
+					"<leader>ta",
+					":lua require('metals').toggle_setting('showImplicitArguments')<cr>",
+					description = "Metals show implicit arguments",
+				},
+				{
 					"<A-t>",
 					":Telescope<cr>",
 					description = "All telescope menus (pickers)",

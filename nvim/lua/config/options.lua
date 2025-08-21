@@ -93,8 +93,6 @@ opt.foldtext = ""
 opt.foldcolumn = "0"
 opt.fillchars:append({ fold = " " })
 
-
-
 local function fold_virt_text(result, s, lnum, coloff)
 	if not coloff then
 		coloff = 0
@@ -143,8 +141,6 @@ opt.mouse = "a" -- Enable mouse mode
 opt.showmatch = true
 opt.lazyredraw = false
 opt.inccommand = "nosplit"
-
-
 
 -- Highlight on yank
 vim.cmd([[
@@ -219,3 +215,13 @@ vim.api.nvim_set_hl(0, "VimwikiHeader2", { bold = true, ctermfg = 0, fg = "#ffd1
 vim.api.nvim_set_hl(0, "VimwikiHeader3", { bold = true, ctermfg = 0, fg = "#06d6a0" })
 vim.api.nvim_set_hl(0, "VimwikiHeader4", { bold = true, ctermfg = 0, fg = "#118ab2" })
 vim.api.nvim_set_hl(0, "VimwikiHeader5", { bold = true, ctermfg = 0, fg = "#073b4c" })
+
+-- Auto-enable inlay hints globally when available
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if client and client.supports_method("textDocument/inlayHint") then
+			vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
+		end
+	end,
+})
