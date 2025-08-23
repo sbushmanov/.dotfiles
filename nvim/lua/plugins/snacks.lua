@@ -112,6 +112,8 @@ return {
 						"readme.md",
 						"README",
 						"readme",
+						".tool-versions",
+						"pyrightconfig.json",
 					},
 					-- dev is a dir just above root
 					dev = { "~", "~/Scala_Pragmatic_Scala/", "~/Dev_Scala/" },
@@ -250,14 +252,7 @@ return {
 			desc = "Find Config File",
 		},
 		{
-			"<leader>sP",
-			function()
-				Snacks.picker.projects()
-			end,
-			desc = "Projects",
-		},
-		{
-			"<leader>fP",
+			"P",
 			function()
 				Snacks.picker.projects()
 			end,

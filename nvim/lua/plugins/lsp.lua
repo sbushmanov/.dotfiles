@@ -162,6 +162,39 @@ return {
 
 		-- Enable the following language servers
 		local servers = {
+			pyright = {
+				settings = {
+					python = {
+						venvPath = "/home/sergey/anaconda3",
+						pythonPath = "/home/sergey/anaconda3/bin/python",
+						analysis = {
+							autoSearchPaths = true,
+							diagnosticMode = "openFilesOnly", -- only open files analyzed
+							typeCheckingMode = "off", -- delegate to Ruff
+							disableOrganizeImports = true, -- let Ruff handle imports
+							diagnosticSeverityOverrides = {
+								reportConstantRedefinition = "warning",
+								reportDuplicateImport = "warning",
+								reportMissingSuperCall = "warning",
+								reportUnnecessaryCast = "warning",
+								reportUnnecessaryComparison = "warning",
+								reportUnnecessaryContains = "warning",
+								reportCallInDefaultInitializer = "info",
+								reportFunctionMemberAccess = "info",
+								reportImportCycles = "info",
+								reportMatchNotExhaustive = "info",
+								reportShadowedImports = "info",
+								reportUninitializedInstanceVariable = "info",
+								reportUnnecessaryIsInstance = "info",
+								reportUnusedClass = "info",
+								reportUnusedFunction = "info",
+								reportUnusedImport = "info",
+								reportUnusedVariable = "info",
+							},
+						},
+					},
+				},
+			},
 			bashls = {},
 			marksman = {},
 			lua_ls = {

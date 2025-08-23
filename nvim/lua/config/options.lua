@@ -27,6 +27,8 @@ end
 
 -- Access system clipboard
 local opt = vim.opt
+local g = vim.g
+g.python3_host_prog = "/home/sergey/anaconda3/bin/python3"
 
 -- metals
 vim.opt_global.completeopt = { "menuone", "noinsert", "noselect" }
