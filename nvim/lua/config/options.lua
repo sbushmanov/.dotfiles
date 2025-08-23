@@ -29,6 +29,11 @@ end
 local opt = vim.opt
 local g = vim.g
 g.python3_host_prog = "/home/sergey/anaconda3/bin/python3"
+-- Set Python path for Mason
+vim.env.PATH = "/home/sergey/anaconda3/bin:" .. vim.env.PATH
+
+-- Alternatively, set specific environment variables
+vim.env.PYTHONPATH = "/home/sergey/anaconda3/lib/python3.12/site-packages"
 
 -- metals
 vim.opt_global.completeopt = { "menuone", "noinsert", "noselect" }

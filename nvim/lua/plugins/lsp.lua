@@ -165,8 +165,8 @@ return {
 			pyright = {
 				settings = {
 					python = {
-						venvPath = "/home/sergey/anaconda3",
 						pythonPath = "/home/sergey/anaconda3/bin/python",
+						venvPath = "/home/sergey/anaconda3/envs",
 						analysis = {
 							autoSearchPaths = true,
 							diagnosticMode = "openFilesOnly", -- only open files analyzed

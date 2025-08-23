@@ -252,7 +252,14 @@ return {
 			desc = "Find Config File",
 		},
 		{
-			"P",
+			"<leader>P",
+			function()
+				Snacks.picker.projects()
+			end,
+			desc = "Projects",
+		},
+		{
+			"<leader>fp",
 			function()
 				Snacks.picker.projects()
 			end,
