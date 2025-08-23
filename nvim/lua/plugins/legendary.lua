@@ -83,22 +83,30 @@ return {
 				},
 				{
 					"<leader><leader>",
-					":lua require'telescope'.extensions.metals.commands()<cr>",
+					function()
+						require("telescope").extensions.metals.commands()
+					end,
 					description = "Metals menu",
 				},
 				{
 					"<leader>tt",
-					":lua require('metals').toggle_setting('showInferredType')<cr>",
+					function()
+						require("metals").toggle_setting("showInferredType")
+					end,
 					description = "Metals show inferred types",
 				},
 				{
 					"<leader>tc",
-					":lua require('metals').toggle_setting('showImplicitConversionsAndClasses')<cr>",
+					function()
+						require("metals").toggle_setting("showImplicitConversionsAndClasses")
+					end,
 					description = "Metals show implicit conversions ans classes",
 				},
 				{
 					"<leader>ta",
-					":lua require('metals').toggle_setting('showImplicitArguments')<cr>",
+					function()
+						require("metals").toggle_setting("showImplicitArguments")
+					end,
 					description = "Metals show implicit arguments",
 				},
 				{

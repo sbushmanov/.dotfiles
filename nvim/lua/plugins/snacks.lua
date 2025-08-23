@@ -116,7 +116,7 @@ return {
 						"pyrightconfig.json",
 					},
 					-- dev is a dir just above root
-					dev = { "~", "~/Scala_Pragmatic_Scala/", "~/Dev_Scala/" },
+					dev = { "~", "~/Scala_Pragmatic_Scala/", "~/Dev_Scala/", "~/dev/" },
 
 					matcher = {
 						frecency = true,
