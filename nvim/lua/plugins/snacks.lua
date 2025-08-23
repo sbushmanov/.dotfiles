@@ -41,12 +41,12 @@ return {
 						desc = "Recent Files",
 						action = ":lua Snacks.dashboard.pick('oldfiles')",
 					},
-					-- {
-					-- 	icon = " ",
-					-- 	key = "c",
-					-- 	desc = "Config",
-					-- 	action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
-					-- },
+					{
+						icon = " ",
+						key = "c",
+						desc = "Config",
+						action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+					},
 					-- { icon = " ", key = "s", desc = "Restore Session", section = "session" },
 					-- {
 					-- 	icon = "󰒲 ",
@@ -77,6 +77,9 @@ return {
 				symlink = "",
 			},
 		},
+		finder = {
+			recent_projects = {},
+		},
 
 		-- 2. Enable Picker (you have extensive picker mappings)
 		picker = {
@@ -86,6 +89,62 @@ return {
 				width = 0.9,
 				height = 0.8,
 				border = "rounded",
+			},
+			sources = {
+				projects = {
+					-- finder = "recent_projects", -- This tells the picker to use the finder defined above
+					format = "file",
+					-- 'dev' and 'patterns' are removed from here
+					confirm = "load_session",
+					-- 'matcher' and 'sort' stay here as they are about sorting the results in the UI
+					patterns = {
+						".git",
+						"_darcs",
+						".hg",
+						".bzr",
+						".svn",
+						"package.json",
+						"Makefile",
+						".sbt",
+						".bloop",
+						".metals",
+						"README.md",
+						"readme.md",
+						"README",
+						"readme",
+					},
+					-- dev is a dir just above root
+					dev = { "~", "~/Scala_Pragmatic_Scala/", "~/Dev_Scala/" },
+
+					matcher = {
+						frecency = true,
+						sort_empty = true,
+						cwd_bonus = false,
+					},
+					sort = { fields = { "score:desc", "idx" } },
+					win = {
+						preview = { minimal = true },
+						input = {
+							keys = {
+								-- every action will always first change the cwd of the current tabpage to the project
+								["<c-e>"] = { { "tcd", "picker_explorer" }, mode = { "n", "i" } },
+								["<CR>"] = { { "tcd", "picker_files" }, mode = { "n", "i" } },
+								["<c-g>"] = { { "tcd", "picker_grep" }, mode = { "n", "i" } },
+								["<c-r>"] = { { "tcd", "picker_recent" }, mode = { "n", "i" } },
+								["<c-w>"] = { { "tcd" }, mode = { "n", "i" } },
+								["<c-t>"] = {
+									function(picker)
+										vim.cmd("tabnew")
+										Snacks.notify("New tab opened")
+										picker:close()
+										Snacks.picker.projects()
+									end,
+									mode = { "n", "i" },
+								},
+							},
+						},
+					},
+				},
 			},
 		},
 
@@ -190,13 +249,20 @@ return {
 			end,
 			desc = "Find Config File",
 		},
-		-- {
-		-- 	"<leader>fp",
-		-- 	function()
-		-- 		Snacks.picker.projects()
-		-- 	end,
-		-- 	desc = "Projects",
-		-- },
+		{
+			"<leader>sP",
+			function()
+				Snacks.picker.projects()
+			end,
+			desc = "Projects",
+		},
+		{
+			"<leader>fP",
+			function()
+				Snacks.picker.projects()
+			end,
+			desc = "Projects",
+		},
 		{
 			"<leader>fr",
 			function()

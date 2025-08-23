@@ -116,9 +116,3 @@ end, { desc = "Step Into" })
 keymap("n", "<F12>", function()
 	require("dap").restart()
 end, { desc = "DAP Restart" })
-
--- ═══════════════════════════════════════════════════════════════════════════════
--- NOTES: Removed duplicate/conflicting keymaps and organized by purpose
--- All picker operations are now handled by Snacks in pickers-simple.lua
--- LSP operations are handled by the LSP config with Snacks pickers
--- ═══════════════════════════════════════════════════════════════════════════════

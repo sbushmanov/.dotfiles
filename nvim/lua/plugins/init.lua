@@ -3,11 +3,11 @@ return {
 	{ "nvim-lua/plenary.nvim", lazy = true }, -- defer loading plenary, load on demand
 
 	-- Text editing enhancements
-	{
-		"tpope/vim-unimpaired",
-		lazy = true,
-		event = "VeryLazy",
-	},
+	-- {
+	-- 	"tpope/vim-unimpaired",
+	-- 	lazy = true,
+	-- 	event = "VeryLazy",
+	-- },
 	{
 		"junegunn/vim-easy-align",
 		cmd = "EasyAlign",

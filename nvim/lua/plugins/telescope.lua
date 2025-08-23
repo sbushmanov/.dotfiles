@@ -12,7 +12,7 @@ return {
 		"nvim-telescope/telescope-project.nvim",
 		"nvim-telescope/telescope-dap.nvim",
 		"nvim-telescope/telescope-file-browser.nvim",
-		"ahmedkhalf/project.nvim",
+		-- "ahmedkhalf/project.nvim",
 		"nvim-telescope/telescope-frecency.nvim",
 		"prochri/telescope-all-recent.nvim",
 		"nvim-telescope/telescope-symbols.nvim",

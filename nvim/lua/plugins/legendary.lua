@@ -24,7 +24,7 @@ return {
 					description = "Display Snacks dashboard",
 				},
 				{
-					"N",
+					"<A-n>",
 					"<cmd>NnnPicker %:p:h<CR>",
 					mode = { "n" },
 					description = "Open NNN picker floating window",
