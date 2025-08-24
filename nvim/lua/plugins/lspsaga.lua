@@ -59,7 +59,7 @@ return {
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"nvim-tree/nvim-web-devicons",
-		"neovim/nvim-lspconfig",
+		-- "neovim/nvim-lspconfig",
 	},
 	enabled = true,
 }

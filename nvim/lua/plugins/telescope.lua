@@ -18,16 +18,16 @@ return {
 		"prochri/telescope-all-recent.nvim",
 		"nvim-telescope/telescope-symbols.nvim",
 		"debugloop/telescope-undo.nvim",
-		{
-			"adoyle-h/lsp-toggle.nvim",
-			dependencies = { "keyvchan/telescope-find-pickers.nvim" },
-			config = function()
-				require("lsp-toggle").setup({
-					create_cmds = true,
-					telescope = true,
-				})
-			end,
-		},
+		-- {
+		-- 	"adoyle-h/lsp-toggle.nvim",
+		-- 	dependencies = { "keyvchan/telescope-find-pickers.nvim" },
+		-- 	config = function()
+		-- 		require("lsp-toggle").setup({
+		-- 			create_cmds = true,
+		-- 			telescope = true,
+		-- 		})
+		-- 	end,
+		-- },
 	},
 	config = function()
 		local telescope = require("telescope")

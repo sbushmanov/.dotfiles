@@ -4,6 +4,12 @@ return {
 	event = { "LspAttach" },
 	priority = 100,
 	config = function()
+		vim.keymap.set(
+			{ "v", "n" },
+			"<leader>p",
+			require("actions-preview").code_actions,
+			{ desc = "Show code actions preview" }
+		)
 		require("actions-preview").setup({
 			telescope = {
 				sorting_strategy = "ascending",
@@ -21,4 +27,7 @@ return {
 		})
 	end,
 	enabled = true,
+	snacks = {
+		layout = { preset = "default" },
+	},
 }

@@ -56,16 +56,6 @@ return {
 				-- Rename the variable under your cursor.
 				map("<leader>cr", vim.lsp.buf.rename, "[R]e[n]ame")
 
-				-- Execute a code action
-				map("<leader>ca", function()
-					require("actions-preview").code_actions()
-				end, "[C]ode [A]ction (code action preview)", { "n", "x" })
-
-				-- Execute a code action
-				map("<leader>p", function()
-					require("actions-preview").code_actions()
-				end, "[C]ode [A]ction (code action preview)", { "n", "x" })
-
 				-- Go to declaration
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
