@@ -1,6 +1,8 @@
 return {
 	"aznhe21/actions-preview.nvim",
 	-- event = { "BufReadPre", "BufNewFile" },
+	event = { "LspAttach" },
+	priority = 100,
 	config = function()
 		require("actions-preview").setup({
 			telescope = {
