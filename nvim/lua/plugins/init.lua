@@ -69,4 +69,9 @@ return {
 		"tpope/vim-sleuth",
 		event = "BufReadPre",
 	},
+	{
+		"j-hui/fidget.nvim",
+		event = "LspAttach",
+		opts = {},
+	},
 }

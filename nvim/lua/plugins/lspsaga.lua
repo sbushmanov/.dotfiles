@@ -1,7 +1,7 @@
 return {
 	"nvimdev/lspsaga.nvim",
 	lazy = true,
-	even = "LspAttach",
+	event = "LspAttach",
 	config = function()
 		require("lspsaga").setup({
 			ui = {

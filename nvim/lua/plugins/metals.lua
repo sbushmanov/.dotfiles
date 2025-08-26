@@ -5,10 +5,6 @@ return {
 		"saghen/blink.cmp",
 		"nvimdev/lspsaga.nvim",
 		"mfussenegger/nvim-dap",
-		{
-			"j-hui/fidget.nvim",
-			opts = {},
-		},
 	},
 	ft = { "scala", "sbt", "java", "sc" },
 	config = function()
