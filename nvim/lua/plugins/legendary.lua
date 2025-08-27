@@ -129,7 +129,7 @@ return {
 				{ "<leader>fv", ":FzfLua commands<cr>", description = "Fzf commands" },
 				{ "<leader>fc", ":FzfLua colorscheme<cr>", description = "fzf colorscheme" },
 				{
-					"<leader>fh",
+					"<leader>tc",
 					":Telescope frecency<cr>",
 					description = "Metals menu",
 				},
