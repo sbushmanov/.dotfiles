@@ -24,6 +24,12 @@ return {
 					description = "Display Snacks dashboard",
 				},
 				{
+					"<leader>sz",
+					":lua Snacks.picker.zoxide()<CR>",
+					mode = { "n" },
+					description = "Snacks picker zoxide (aka cd to dir and cwd)",
+				},
+				{
 					"<A-n>",
 					"<cmd>NnnPicker %:p:h<CR>",
 					mode = { "n" },
@@ -124,8 +130,8 @@ return {
 				{ "<leader>fr", ":FzfLua registers<cr>", description = "Fzf registers" },
 				{ "<leader>fb", ":FzfLua buffers<cr>", description = "Fzf buffer" },
 				{ "<leader>fg", ":FzfLua live_grep<cr>", description = "Fzf live grep" },
-				{ "<leader>fh", ":FzfLua oldfiles<cr>", description = "Fzf file history" },
-				{ "<C-f>", ":FzfLua oldfiles<cr>", description = "Fzf file history" },
+				{ "<leader>fh", ":FzfLua oldfiles<cr>", description = "Fzf file history (aka recent files)" },
+				{ "<C-f>", ":FzfLua oldfiles<cr>", description = "Fzf file history (aka recent files)" },
 				{ "<leader>fv", ":FzfLua commands<cr>", description = "Fzf commands" },
 				{ "<leader>fc", ":FzfLua colorscheme<cr>", description = "fzf colorscheme" },
 				{

@@ -1,7 +1,8 @@
 return {
 	-- Main LSP Configuration
 	"neovim/nvim-lspconfig",
-	ft = { "python", "go", "lua", "bash", "json", "yaml", "rust", "awk" },
+	event = "VeryLazy",
+	-- ft = { "python", "go", "lua", "bash", "json", "yaml", "rust", "awk" },
 	cmd = { "LspInfo", "LspInstall", "LspStart" },
 	dependencies = {
 		-- Automatically install LSPs and related tools to stdpath for Neovim
