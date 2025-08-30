@@ -5,6 +5,7 @@ return {
 	config = function()
 		require("lspsaga").setup({
 			ui = {
+				devicon = true,
 				theme = "round",
 				title = true,
 				border = "rounded",
@@ -18,6 +19,10 @@ return {
 				outgoing = " ",
 				hover = " ",
 				kind = {},
+			},
+			definition = {
+				width = 0.9,
+				height = 0.8,
 			},
 		})
 

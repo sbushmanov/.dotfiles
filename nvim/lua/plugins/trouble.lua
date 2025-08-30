@@ -1,11 +1,13 @@
 return {
 	"folke/trouble.nvim",
-	opts = {}, -- for default options, refer to the configuration section for custom setup.
+	opts = {
+		width = 75,
+	}, -- for default options, refer to the configuration section for custom setup.
 	cmd = "Trouble",
 	keys = {
 		{
 			"<leader>xx",
-			"<cmd>Trouble diagnostics toggle win.type = split win.position=right win.width = '.25'<cr>",
+			"<cmd>Trouble diagnostics toggle win.type = split win.position=right<cr>",
 			desc = "Diagnostics (Trouble)",
 		},
 		{

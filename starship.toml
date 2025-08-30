@@ -26,3 +26,8 @@ symbol = "󰬷 "
 
 [line_break]
 # disabled = true
+
+[shell]
+disabled = false
+nu_indicator = "🦀"
+fish_indicator = ""

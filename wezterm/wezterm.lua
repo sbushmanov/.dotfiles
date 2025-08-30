@@ -44,7 +44,7 @@ config.hide_tab_bar_if_only_one_tab = true
 
 -- fonts
 -- config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font = wezterm.font("JetBrainsMono Nerd Font Mono")
+config.font = wezterm.font("JetBrainsMono Nerd Font")
 -- config.font = wezterm.font('FiraMono Nerd Font')
 -- config.font = wezterm.font('Monaspace Radon')
 config.font_size = 12

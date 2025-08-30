@@ -151,6 +151,21 @@ return {
 					description = "Lspsaga toggle terminal",
 				},
 				{
+					"<leader>lp",
+					"<cmd>Lspsaga peek_definition<CR>",
+					description = "Lspsaga peek definition",
+				},
+				{
+					"<leader>lf",
+					"<cmd>Lspsaga finder<CR>",
+					description = "Lspsaga finder for references and implementations",
+				},
+				{
+					"<leader>N",
+					"<cmd>NoiceAll<CR>",
+					description = "Show history of all notifications and command outputs",
+				},
+				{
 					"H",
 					":lua vim.lsp.buf.hover()<CR>",
 					description = "Metals hover",
