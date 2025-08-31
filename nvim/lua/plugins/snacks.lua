@@ -40,18 +40,18 @@ return {
 					-- 	key = "r",
 					-- 	desc = "Recent Files",
 					-- 	action = ":lua Snacks.dashboard.pick('oldfiles')",
+					{
+						icon = "",
+						key = "p",
+						desc = "Find projects",
+						action = ":lua Snacks.dashboard.pick('projects')",
+					},
 					-- },
 					{
 						icon = " ",
 						key = "z",
 						desc = "Cd directory",
 						action = ":lua Snacks.dashboard.pick('zoxide')",
-					},
-					{
-						icon = "",
-						key = "p",
-						desc = "Find projects",
-						action = ":lua Snacks.dashboard.pick('projects')",
 					},
 					{
 						icon = " ",
