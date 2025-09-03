@@ -15,10 +15,17 @@ return {
 		local metals_config = metals.bare_config()
 
 		metals_config.settings = {
-			showImplicitArguments = true,
-			showInferredType = true,
-			superMethodLensesEnabled = true,
-			showImplicitConversionsAndClasses = true,
+			-- showImplicitArguments = true,
+			-- showInferredType = true,
+			-- superMethodLensesEnabled = true,
+			-- showImplicitConversionsAndClasses = true,
+			inlayHints = {
+				hintsInPatternMatch = { enable = true },
+				implicitArguments = { enable = true },
+				implicitConversions = { enable = true },
+				inferredTypes = { enable = true },
+				typeParameters = { enable = true },
+			},
 		}
 
 		metals_config.init_options.statusBarProvider = "on"
@@ -37,6 +44,7 @@ return {
 		-- In metals.lua, add to the on_attach function:
 		metals_config.on_attach = function(client, bufnr)
 			-- Existing inlay hints code
+			vim.lsp.inlay_hint.enable(true)
 			vim.defer_fn(function()
 				if vim.lsp.inlay_hint and client.supports_method("textDocument/inlayHint") then
 					vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })

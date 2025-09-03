@@ -70,7 +70,7 @@ return {
 			},
 			debug = {
 				enabled = false, -- Set to true to show scores in the UI
-				show_scores = true,
+				show_scores = false,
 			},
 			logging = {
 				enabled = true,
