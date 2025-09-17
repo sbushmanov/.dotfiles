@@ -129,6 +129,9 @@ if status is-interactive
     #------------------------------------------------------------------------------#
     set -gx PATH "$PATH:$HOME/.cargo/bin"
     set -gx RUSTUP_TOOLCHAIN "stable"
+    set -gx RUSTC_WRAPPER (which sccache)
+    set -gx SCCACHE_DIR "$HOME/.cache/sccache"
+    set -gx SCCACHE_CACHE_SIZE "50G"
 
    
     #------------------------------------------------------------------------------#

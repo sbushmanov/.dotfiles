@@ -230,12 +230,13 @@ return {
 
 		-- Setup LSP servers
 		require("mason-lspconfig").setup({
-			ensure_installed = {},
 			automatic_installation = false,
 			handlers = {
+				["rust_analyzer"] = function()
+					-- Do nothing, as rustaceanvim handles it
+				end,
 				function(server_name)
 					local server = servers[server_name] or {}
-					-- Override capabilities
 					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 					require("lspconfig")[server_name].setup(server)
 				end,

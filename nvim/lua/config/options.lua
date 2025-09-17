@@ -39,7 +39,7 @@ vim.env.PYTHONPATH = "/home/sergey/anaconda3/lib/python3.12/site-packages"
 vim.opt_global.completeopt = { "menuone", "noinsert", "noselect" }
 
 -- Avoid jumping on code actions
-opt.numberwidth = 6
+opt.numberwidth = 7
 
 opt.clipboard = "unnamedplus"
 

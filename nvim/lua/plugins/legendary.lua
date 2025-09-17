@@ -140,6 +140,7 @@ return {
 					description = "Metals menu",
 				},
 				{ "<leader>dr", ":lua require('dap').repl.toggle({}, 'vsplit new')<cr>", description = "DAP repl" },
+				{ "<F5>", ":lua require('dap').repl.toggle({}, 'vsplit new')<cr>", description = "DAP repl" },
 				{ "<leader>db", ":DapToggleBreakpoint<cr>", description = "DAP insert breakpoint" },
 				{
 					"<A-o>",

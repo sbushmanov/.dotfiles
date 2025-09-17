@@ -1,20 +1,17 @@
 return {
 	"mfussenegger/nvim-dap",
-	ft = { "python", "go", "lua", "bash", "json", "yaml", "rust", "awk"}, -- Fixed "scala" typo
+	ft = { "python", "go", "lua", "bash", "json", "yaml", "rust", "awk" }, -- Fixed "scala" typo
 	config = function()
 		local dap = require("dap")
 
 		-- Terminal split settings
 		-- dap.defaults.fallback.terminal_win_cmd = "vsplit new"
 
-
 		-- Debugger UI setup
 		vim.fn.sign_define("DapBreakpoint", { text = "●", texthl = "DapBreakpoint" })
 		vim.fn.sign_define("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition" })
 		vim.fn.sign_define("DapLogPoint", { text = "◆", texthl = "DapLogPoint" })
 		vim.fn.sign_define("DapStopped", { text = "", texthl = "DapStopped", linehl = "DapStopped" })
-
-
 
 		-- Key mappings
 		vim.keymap.set("n", "<F2>", dap.toggle_breakpoint, { desc = "Toggle breakpoint" })

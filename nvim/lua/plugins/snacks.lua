@@ -106,7 +106,6 @@ return {
 				projects = {
 					-- finder = "recent_projects", -- This tells the picker to use the finder defined above
 					format = "file",
-					-- 'dev' and 'patterns' are removed from here
 					confirm = "load_session",
 					-- 'matcher' and 'sort' stay here as they are about sorting the results in the UI
 					patterns = {
@@ -128,7 +127,7 @@ return {
 						"pyrightconfig.json",
 					},
 					-- dev is a dir just above root
-					dev = { "~", "~/Scala_Pragmatic_Scala/", "~/Dev_Scala/", "~/dev/" },
+					dev = { "~", "~/Scala_Pragmatic_Scala/", "~/Dev_Scala/", "~/dev/", "~/rust_dev/" },
 
 					matcher = {
 						frecency = true,

@@ -21,7 +21,7 @@ return {
 			-- showImplicitConversionsAndClasses = true,
 			inlayHints = {
 				hintsInPatternMatch = { enable = true },
-				implicitArguments = { enable = true },
+				-- implicitArguments = { enable = true },
 				implicitConversions = { enable = true },
 				inferredTypes = { enable = true },
 				typeParameters = { enable = true },

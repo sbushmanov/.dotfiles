@@ -25,7 +25,7 @@ return {
 				lualine_x = {
 					"g:metals_status",
 					"encoding",
-					"filesize",
+					-- "filesize",
 					"filetype",
 				},
 				lualine_y = { "progress" },

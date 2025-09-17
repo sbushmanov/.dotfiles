@@ -65,8 +65,8 @@
   "agent": {
     "always_allow_tool_actions": true,
     "inline_assistant_model": {
-      "provider": "openai",
-      "model": "gpt-4.1-mini"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
     },
     "model_parameters": [],
     "default_model": {
